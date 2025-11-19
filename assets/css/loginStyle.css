@@ -3,3 +3,31 @@ body#frontpage {
   font-family: Arial, sans-serif;
   text-align: center;
 }
+
+body#frontpage h1 {
+    font-style: italic;
+}
+
+body#frontpage #login button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px auto;
+  width: 200px;
+}
+
+body#frontpage #login button:hover {
+  background-color: #0056b3;
+}
+
+body#frontpage #login input {
+  display: block;
+  width: 200px;
+  margin: 10px auto;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
