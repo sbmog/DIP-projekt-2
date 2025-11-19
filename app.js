@@ -1,6 +1,11 @@
 import express from 'express'
 import session from 'express-session'
-import loginRouter from './login.js'
+import loginRouter from './routes/login.js'
+
+import chat from './models/chat.js'
+import message from './models/message.js'
+import user from './models/user.js'
+
 
 const app = express()
 const port = 8090
