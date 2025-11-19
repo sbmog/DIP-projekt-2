@@ -1,0 +1,17 @@
+body#chatpage {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+#chatList {
+  list-style: none;
+  padding: 0;
+  margin: 10px auto;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#chatList li {
+  margin-bottom: 10px;
+}
