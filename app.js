@@ -1,6 +1,11 @@
 import express from 'express'
 import session from 'express-session'
-import loginRouter from './login.js'
+import loginRouter from './routes/login.js'
+
+import chat from './models/chat.js'
+import message from './models/message.js'
+import user from './models/user.js'
+
 
 const app = express()
 const port = 8090
@@ -26,14 +31,24 @@ app.get('/', (request, response)=>{
 })
 
 app.get('/chats', (request, response) => {
-
+    response.json(chats)
 })
 
 app.get('/chats/:id', (request, response) => {
+    const id = parseInt(request.params.id)
 
+    //Find den specifikke chat
+    const chat = chats.find(chat => chat.id === id)
+
+    //Hvis chat ikke findes
+    if (!chat){
+        return response.status(404).json({error: "Chat ikke fundet"})
+    }
+    response.json(chat)
 })
 
 app.get('/chats/:id/messages', (request, response) => {
+    const id = parseInt(request.params.id)
 
 })
 
@@ -42,11 +57,20 @@ app.get('/chats/messages/:id', (request, response) => {
 })
 
 app.get('/users', (request, response) => {
-
+    response.json(users)
 })
 
 app.get('/users/:id', (request, response) => {
+    const id = parseInt(request.params.id)
+    
+    //Find den specifikke user
+    const user = users.find(user => user.id === id)
 
+    //Hvis user ikke findes
+    if (!user) {
+        return response.status(404).json({error: "User ikke fundet"})
+    }
+    response.json(user)
 })
 
 app.get('/users/:id/messages', (request, response) => {
