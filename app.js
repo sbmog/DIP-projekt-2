@@ -1,6 +1,6 @@
 import express from 'express'
 import session from 'express-session'
-import router from './login.js'
+import loginRouter from './login.js'
 
 const app = express()
 const port = 8090
@@ -12,13 +12,12 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // Middlewear
-app.use('/login', router)
-
 app.use(session({
     secret: 'Spencer',
     saveUninitialized: true,
     resave: true
 }))
+app.use(loginRouter)
 
 
 // Endpoints
