@@ -6,17 +6,15 @@ const router = express.Router()
 router.use(checkAccess)
 
 // Endpoints
-router.get('/logout', (request,response)=>{
-    request.session.destroy()
-    response.redirect('/')
-})
 
+/*
 router.get('/chats', (request,response)=>{
     response.render('chats', {knownUser: request.session.isLoggedIn})
 })
+    */
 
 // HTTP request
-router.post('/login', (request, response)=>{
+router.post('/', (request, response)=>{
     const username = request.body.username
     const password = request.body.password
     if (checkUserCredientials(username, password)) {
