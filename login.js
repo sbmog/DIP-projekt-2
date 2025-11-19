@@ -11,8 +11,8 @@ router.get('/logout', (request,response)=>{
     response.redirect('/')
 })
 
-router.get('/secret', (request,response)=>{
-    response.render('secret', {knownUser: request.session.isLoggedIn})
+router.get('/chats', (request,response)=>{
+    response.render('chats', {knownUser: request.session.isLoggedIn})
 })
 
 // HTTP request
@@ -21,7 +21,7 @@ router.post('/login', (request, response)=>{
     const password = request.body.password
     if (checkUserCredientials(username, password)) {
         request.session.isLoggedIn = true
-        response.redirect('/secret')
+        response.redirect('/chats')
     } else {
         response.render('error', {data: {username:username, password: password}})
     }
@@ -39,8 +39,8 @@ function checkUserCredientials(username, password){
 
 function checkAccess(request, response, next) {
     console.log("Forsøg på adgang til siden: " + request.url);
-    // forsøg på at se /secret siden UDEN at være logget ind
-    if (request.url === '/secret' && !request.session.isLoggedIn){
+    // forsøg på at se /chats siden UDEN at være logget ind
+    if (request.url === '/chats' && !request.session.isLoggedIn){
         response.redirect('/')
     } else {
         // du er logget ind :) OK du får adgang
