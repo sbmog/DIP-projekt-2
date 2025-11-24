@@ -1,5 +1,6 @@
 import express from 'express'
 import session from 'express-session'
+import fs from 'fs'
 
 import loginRouter from './routes/login.js'
 import chatsRouter from './routes/chats.js'
@@ -18,6 +19,13 @@ app.set('view engine', 'pug')
 app.use(express.static('assets'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+const cssFolder = './assets/css';
+try {
+    const files = fs.readdirSync(cssFolder);
+    app.locals.cssFiles = files.filter(file => file.endsWith('.css'));
+} catch (err) {
+    app.locals.cssFiles = [];
+}
 
 // Middlewear
 app.use(session({
@@ -43,3 +51,4 @@ app.get('/logout', (request, response) => {
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`)
 })
+

@@ -1,0 +1,66 @@
+body#createChat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+  justify-content: center;  
+  min-height: 80vh;       
+}
+
+body#createChat h1 {
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+body#createChat form {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+}
+
+body#createChat label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #555;
+  font-size: 14px;
+}
+
+
+body#createChat input[type="text"] {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+body#createChat input[type="text"]:focus {
+  border-color: #007bff;
+}
+
+body#createChat button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+body#createChat button:hover {
+  background-color: #218838;
+}
+
+body#createChat button:active {
+  transform: scale(0.98);
+}

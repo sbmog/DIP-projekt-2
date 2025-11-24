@@ -3,7 +3,11 @@ html(lang="da")
     head
         meta(charset="UTF-8")
         title= title 
-        link(rel="stylesheet", href="/css/loginStyle.css")
-        link(rel="stylesheet", href="/css/chatListStyle.css")
-        link(rel="stylesheet", href="style.css")
+
+        link(rel="stylesheet", href="/style.css")
+
+        // Indlæser automatisk alle andre filer fra css-mappen
+        if cssFiles
+            each file in cssFiles
+                link(rel="stylesheet", href='/css/' + file)
     body

@@ -1,18 +1,23 @@
 include includes/header
 
 body#chatpage
-  h1 Samtale: #{chat.name}
-  a(href="/chats")
+  div.chat-container
+    div.chat-header
+      a.back-btn(href="/chats") &larr; Tilbage
+      h1 #{chat.name}
 
-  div.messages
-    if chat.messages && chat.messages.length > 0
-      ul
-        each msg in chat.messages
-          li #{msg.content}
-    else
-      p Ingen beskeder endnu.
+    // Området hvor beskederne vises
+    div.messages
+      if chat.messages && chat.messages.length > 0
+        ul
+          each msg in chat.messages
+            li.message-bubble 
+              strong.user-name #{msg.user || 'Bruger'}:
+              span.message-text #{msg.messageContent || msg.content}
+      else
+        p.no-messages Ingen beskeder endnu. Vær den første til at skrive!
 
-  // Formular til at sende ny besked
-  form(action=`/chats/${chat.id}/messages` method="POST")
-    input(type="text" name="content" placeholder="Skriv en besked..." required)
-    button(type="submit") Send
+    // Til at sende ny besked
+    form.chat-form(action=`/chats/${chat.id}/messages` method="POST")
+      input(type="text" name="content" placeholder="Skriv en besked..." required autocomplete="off")
+      button(type="submit") Send
