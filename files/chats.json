@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Test Chat",
+    "oprettelsesDato": "2025-11-24T07:42:32.988Z",
+    "user": 123,
+    "messages": []
+  },
+  {
+    "id": 2,
+    "name": "Julefrokost",
+    "oprettelsesDato": "2025-12-01T10:00:00.000Z",
+    "user": 123,
+    "messages": []
+  },
+  {
+    "id": 3,
+    "name": "Sommerfest",
+    "oprettelsesDato": "2026-06-20T14:00:00.000Z",
+    "user": 456,
+    "messages": []
+  }
+]

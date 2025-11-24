@@ -1,0 +1,18 @@
+include includes/header
+
+body#chatpage
+  h1 Samtale: #{chat.name}
+  a(href="/chats")
+
+  div.messages
+    if chat.messages && chat.messages.length > 0
+      ul
+        each msg in chat.messages
+          li #{msg.content}
+    else
+      p Ingen beskeder endnu.
+
+  // Formular til at sende ny besked
+  form(action=`/chats/${chat.id}/messages` method="POST")
+    input(type="text" name="content" placeholder="Skriv en besked..." required)
+    button(type="submit") Send

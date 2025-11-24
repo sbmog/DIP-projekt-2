@@ -2,6 +2,16 @@ include includes/header
 
 body#chatpage
   h1 Chat oversigt
+  
+  // Link til at oprette en ny chat (hvis du vil have det)
+  // a(href="/create-chat") Opret ny chat
+
   ul#chatList
-    li Julefrokost 
-    li Sommerfest
+    if chats.length > 0
+      each chat in chats
+        li
+          // Link til den enkelte chat-samtale
+          a(href=`/chats/${chat.id}`) #{chat.name}
+          span  (ID: #{chat.id})
+    else
+      p Ingen chats fundet.

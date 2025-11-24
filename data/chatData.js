@@ -1,10 +1,10 @@
 import { promises as fs } from "fs"
 import Chat from "../models/chat.js"
 
-const FILE = "./chats.json"
+const FILE = "./files/chats.json"
 
 // Læs eksisterende chats fra JSON
-async function getChats() {
+export async function getChats() {
     try {
         const txt = await fs.readFile(FILE, "utf8");
         return JSON.parse(txt);
