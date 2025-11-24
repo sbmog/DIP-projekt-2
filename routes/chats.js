@@ -1,6 +1,6 @@
 import express from 'express'
 // 1. Importer funktionen til at hente data
-import { getChats } from '../data/chatData.js' 
+import { getChats, createChat } from '../data/chatData.js' 
 
 const router = express.Router()
 
@@ -11,6 +11,19 @@ router.get('/', async (request, response) => {
     
     // 3. Render 'chats.pug' og send listen med
     response.render('chats', { chats: chats }) 
+})
+
+// Vis oprettelse side
+router.get('/create', (request, response) => {
+    response.render('createChat')
+})
+
+router.post('/create', async (request, response) => {
+    const chatNavn = request.body.chatName; 
+    
+    // Vi bruger et fast bruger-ID (123) indtil du får login til at virke helt
+    await createChat(chatNavn, 123); 
+    response.redirect('/chats'); 
 })
 
 // SAMTALE: Vis en specifik chat
@@ -26,5 +39,7 @@ router.get('/:id', async (request, response) => {
     // Render en ny view-fil til selve samtalen (vi opretter den om lidt)
     response.render('chatRoom', { chat: chat }) 
 })
+
+
 
 export default router

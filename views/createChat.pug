@@ -1,0 +1,9 @@
+include includes/header
+
+body#createChat
+  h1 Oprettelse af chat
+  
+  form(action="/chats/create" method="POST")
+    label Navn på chat:
+    input(type="text" name="chatName" required)
+    button(type="submit") Opret
