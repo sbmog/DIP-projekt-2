@@ -68,5 +68,12 @@
     "oprettelsesDato": "2025-11-24T10:28:55.171Z",
     "user": 3,
     "chat": 3
+  },
+  {
+    "id": 11,
+    "messageContent": "Jaaaaaa",
+    "oprettelsesDato": "2025-11-24T10:37:11.236Z",
+    "user": 3,
+    "chat": 2
   }
 ]

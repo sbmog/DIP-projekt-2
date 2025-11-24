@@ -26,5 +26,12 @@
     "oprettelsesDato": "2025-11-24T08:44:07.160Z",
     "user": 123,
     "messages": []
+  },
+  {
+    "id": 5,
+    "name": "Dimissionsfest fest 2027",
+    "oprettelsesDato": "2025-11-24T10:28:52.949Z",
+    "user": 123,
+    "messages": []
   }
 ]

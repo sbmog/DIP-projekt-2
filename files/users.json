@@ -19,5 +19,12 @@
     "password": "pass3",
     "oprettelsesDate": "2025-11-24T08:00:00.000Z",
     "userLvl": 3
+  },
+  {
+    "id": 123,
+    "userName": "Jeppe K",
+    "password": "password123",
+    "oprettelsesDate": "2025-11-24T08:00:00.000Z",
+    "userLvl": 1
   }
 ]
