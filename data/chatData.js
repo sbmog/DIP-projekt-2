@@ -31,3 +31,10 @@ export async function createChat(name, userId) {
     await saveChats(chats);
     return chat;
 }
+
+// Hent chats for en specifik bruger
+export async function getChatsByUser(userId) {
+    const chats = await getChats();
+    // Filtrerer alle chats og returnerer kun dem, hvor brugeren er opretteren
+    return chats.filter(c => c.user === userId);
+}
