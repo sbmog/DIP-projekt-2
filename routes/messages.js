@@ -1,5 +1,5 @@
 import express from 'express'
-import { createMessage } from '../data/messageData.js'
+import { createMessage, updateMessage, deleteMessage } from '../data/messageData.js'
 
 // VIGTIGT: mergeParams: true gør, at vi kan få adgang til ':id' parameteren
 // fra den router, der monterer denne (i dette tilfælde routes/chats.js)
@@ -7,12 +7,11 @@ const router = express.Router({ mergeParams: true })
 
 // POST / (som oversættes til POST /chats/:id/messages)
 router.post('/', async (request, response) => {
-    // Parameteren er tilgængelig som request.params.id (fra /chats/:id)
     const chatId = parseInt(request.params.id); 
     const messageContent = request.body.content;
     
-    // Midlertidig løsning: Hårdkodet bruger-ID
-    const userId = 123; 
+    // Hent bruger-ID fra sessionen
+    const userId = request.session.userId;
 
     try {
         await createMessage(messageContent, userId, chatId); //
@@ -28,13 +27,11 @@ router.post('/', async (request, response) => {
 router.patch('/:messageId', async (request, response) => {
     const chatId = parseInt(request.params.id);
     const messageId = parseInt(request.params.messageId);
-    const newContent = request.body.content; // Antager at det nye indhold sendes i body
+    const newContent = request.body.content;
 
     try {
-        const updatedMsg = await updateMessage(messageId, newContent); //
-        
+        const updatedMsg = await updateMessage(messageId, newContent);
         if (updatedMsg) {
-            // Svar med den opdaterede besked eller omdiriger
             response.redirect(`/chats/${chatId}`); 
         } else {
             response.status(404).send("Besked ikke fundet");

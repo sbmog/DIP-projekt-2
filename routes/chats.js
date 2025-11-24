@@ -32,7 +32,7 @@ router.post('/create', async (request, response) => {
 router.get('/:id', async (request, response) => {
     const id = parseInt(request.params.id)
     const chats = await getChats()
-    const chat = chats.find(chat => chat.id === id)
+    const chat = chats.find(chat => chat.id == id)
 
     if (!chat) {
         return response.status(404).send("Chat ikke fundet")
