@@ -75,5 +75,33 @@
     "oprettelsesDato": "2025-11-24T10:37:11.236Z",
     "user": 3,
     "chat": 2
+  },
+  {
+    "id": 12,
+    "messageContent": "Vi jo færdig i 2027 så vi skal da holde en fest",
+    "oprettelsesDato": "2025-11-24T10:37:57.156Z",
+    "user": 3,
+    "chat": 5
+  },
+  {
+    "id": 13,
+    "messageContent": "Så er vi klaaaar??!!🎉🎉🎉🎉",
+    "oprettelsesDato": "2025-11-24T10:38:15.284Z",
+    "user": 3,
+    "chat": 5
+  },
+  {
+    "id": 14,
+    "messageContent": "🎄🎄🎄",
+    "oprettelsesDato": "2025-11-24T10:38:35.210Z",
+    "user": 3,
+    "chat": 2
+  },
+  {
+    "id": 15,
+    "messageContent": "Jeg er admin",
+    "oprettelsesDato": "2025-11-24T10:42:00.392Z",
+    "user": 3,
+    "chat": 6
   }
 ]
