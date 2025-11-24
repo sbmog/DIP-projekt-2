@@ -2,31 +2,28 @@ import express from 'express'
 // 1. Importer funktionen til at hente data
 import { getChats, createChat } from '../data/chatData.js' 
 import { getMessagesByChat } from '../data/messageData.js' 
+import { getUsers } from '../data/userData.js'
 import messagesRouter from './messages.js'
 
 const router = express.Router()
+router.use('/:id/messages', messagesRouter)
 
 // Nu håndterer messagesRouter alle requests til /chats/:id/messages
 router.use('/:id/messages', messagesRouter)
 
 // OVERSIGT: Vis listen af chats
 router.get('/', async (request, response) => {
-    // 2. Hent chats fra filen
     const chats = await getChats() 
-    
-    // 3. Render 'chats.pug' og send listen med
     response.render('chats', { chats: chats }) 
 })
 
-// Vis oprettelse side
+// OPRETTELSE
 router.get('/create', (request, response) => {
     response.render('createChat')
 })
 
 router.post('/create', async (request, response) => {
     const chatNavn = request.body.chatName; 
-    
-    // Vi bruger et fast bruger-ID (123) indtil du får login til at virke helt
     await createChat(chatNavn, 123); 
     response.redirect('/chats'); 
 })
@@ -41,15 +38,18 @@ router.get('/:id', async (request, response) => {
         return response.status(404).send("Chat ikke fundet")
     }
     
-    // Hent beskeder for denne chat
+    // Hent beskeder og brugere
     const messages = await getMessagesByChat(id) 
+    const users = await getUsers()
+    chat.messages = messages.map(msg => {
+        const userObj = users.find(u => u.id == msg.user);
+        return { 
+            content: msg.messageContent,
+            user: userObj ? userObj.userName : 'Bruger ' + msg.user, 
+            oprettelsesDato: msg.oprettelsesDato
+        }
+    })
 
-    chat.messages = messages.map(msg => ({ 
-        content: msg.messageContent, // Bruger messageContent fra modellen
-        user: msg.user,
-        oprettelsesDato: msg.oprettelsesDato
-    }))
-    // Render en ny view-fil til selve samtalen
     response.render('chatRoom', { chat: chat }) 
 })
 

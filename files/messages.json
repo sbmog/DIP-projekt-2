@@ -33,5 +33,26 @@
     "oprettelsesDato": "2025-11-24T10:02:03.269Z",
     "user": 123,
     "chat": 1
+  },
+  {
+    "id": 6,
+    "messageContent": "Sådan!!",
+    "oprettelsesDato": "2025-11-24T10:07:54.891Z",
+    "user": 123,
+    "chat": 2
+  },
+  {
+    "id": 7,
+    "messageContent": "Hallo",
+    "oprettelsesDato": "2025-11-24T10:20:21.281Z",
+    "user": 123,
+    "chat": 2
+  },
+  {
+    "id": 8,
+    "messageContent": "Hej",
+    "oprettelsesDato": "2025-11-24T10:29:00.241Z",
+    "user": 123,
+    "chat": 5
   }
 ]
