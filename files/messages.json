@@ -33,5 +33,33 @@
     "oprettelsesDato": "2025-11-24T10:02:03.269Z",
     "user": 123,
     "chat": 1
+  },
+  {
+    "id": 6,
+    "messageContent": "Hej",
+    "oprettelsesDato": "2025-11-24T10:04:34.575Z",
+    "user": 123,
+    "chat": 4
+  },
+  {
+    "id": 7,
+    "messageContent": "flere beskeder",
+    "oprettelsesDato": "2025-11-24T10:05:09.472Z",
+    "user": 123,
+    "chat": 1
+  },
+  {
+    "id": 8,
+    "messageContent": "kom nu",
+    "oprettelsesDato": "2025-11-24T10:05:12.760Z",
+    "user": 123,
+    "chat": 1
+  },
+  {
+    "id": 9,
+    "messageContent": "kom nu",
+    "oprettelsesDato": "2025-11-24T10:05:13.810Z",
+    "user": 123,
+    "chat": 1
   }
 ]

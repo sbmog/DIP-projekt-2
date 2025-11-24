@@ -1,4 +1,5 @@
 import express from 'express'
+import { getUserByUsername } from '../data/userData.js'
 
 const router = express.Router()
 
@@ -27,12 +28,15 @@ router.post('/', (request, response)=>{
 
 
 // Hjælpe function
-function checkUserCredientials(username, password){
-    let credientials = false
-    if (username == 'Jeppe K' && password == 'panje') {
-        credientials = true
+async function checkUserCredientials(username, password){
+    // Hent brugeren baseret på brugernavn
+    const user = await getUserByUsername(username)
+    
+    // 1. Tjek om brugeren findes, OG 2. Tjek om kodeordet stemmer overens
+    if (user && user.password === password) {
+        return true
     } 
-    return credientials
+    return false
 }
 
 function checkAccess(request, response, next) {
