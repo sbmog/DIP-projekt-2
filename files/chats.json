@@ -19,5 +19,12 @@
     "oprettelsesDato": "2026-06-20T14:00:00.000Z",
     "user": 456,
     "messages": []
+  },
+  {
+    "id": 4,
+    "name": "Nytårsfest",
+    "oprettelsesDato": "2025-11-24T08:44:07.160Z",
+    "user": 123,
+    "messages": []
   }
 ]
