@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "userName": "level1",
+    "password": "pass1",
+    "oprettelsesDate": "2025-11-24T08:00:00.000Z",
+    "userLvl": 1
+  },
+  {
+    "id": 2,
+    "userName": "level2",
+    "password": "pass2",
+    "oprettelsesDate": "2025-11-24T08:00:00.000Z",
+    "userLvl": 2
+  },
+  {
+    "id": 3,
+    "userName": "admin",
+    "password": "pass3",
+    "oprettelsesDate": "2025-11-24T08:00:00.000Z",
+    "userLvl": 3
+  }
+]

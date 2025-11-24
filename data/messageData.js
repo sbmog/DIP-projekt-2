@@ -1,7 +1,7 @@
 import Message from "../models/message.js";
 import { promises as fs } from "fs";
 
-const FILE = "./data/messages.json";
+const FILE = "./files/messages.json";
 
 async function getMessages() {
     try {
@@ -44,4 +44,42 @@ export async function getMessagesByChat(chatId) {
 export async function getMessagesByUser(userId) {
     const messages = await getMessages();
     return messages.filter(m => m.user === userId);
+}
+
+// Hent beskeder ved id
+export async function getMessageById(messageId) {
+    const messages = await getMessages();
+    return messages.find(m => m.id === messageId);
+}
+
+// Opdater besked
+export async function updateMessage(messageId, newContent) {
+    const messages = await getMessages();
+    const index = messages.findIndex(m => m.id === messageId);
+
+    if (index === -1) {
+        return null; // Besked ikke fundet
+    }
+
+    // Opdater indhold og oprettelsesdato
+    messages[index].messageContent = newContent;
+    messages[index].oprettelsesDato = new Date().toISOString(); 
+    
+    await saveMessages(messages);
+    return messages[index];
+}
+
+// Slet besked
+export async function deleteMessage(messageId) {
+    const messages = await getMessages();
+    const initialLength = messages.length;
+    
+    const newMessages = messages.filter(m => m.id !== messageId);
+    
+    if (newMessages.length === initialLength) {
+        return false; // Besked ikke fundet
+    }
+
+    await saveMessages(newMessages);
+    return true; // Besked slettet
 }
