@@ -15,28 +15,31 @@ router.get('/chats', (request,response)=>{
     */
 
 // HTTP request
-router.post('/', (request, response)=>{
+router.post('/', async (request, response)=>{
     const username = request.body.username
     const password = request.body.password
-    if (checkUserCredientials(username, password)) {
+   // Kald den asynkrone funktion. user vil nu indeholde brugerobjektet eller null.
+    const user = await checkUserCredientials(username, password) 
+    
+    if (user) {
         request.session.isLoggedIn = true
+        request.session.userId = user.id
         response.redirect('/chats')
     } else {
-        response.render('error', {data: {username:username, password: password}})
+        response.render('error', {data: {username:username, password: password, message: "Forkert brugernavn eller kodeord."}}) 
     }
 })
 
 
-// Hjælpe function
+// Hjælpe function (OPDATERET til at returnere brugerobjektet)
 async function checkUserCredientials(username, password){
-    // Hent brugeren baseret på brugernavn
-    const user = await getUserByUsername(username)
+    const user = await getUserByUsername(username) //
     
-    // 1. Tjek om brugeren findes, OG 2. Tjek om kodeordet stemmer overens
+    // Tjek om brugeren findes, OG om kodeordet stemmer overens
     if (user && user.password === password) {
-        return true
+        return user // Returner hele brugerobjektet (inkl. ID)
     } 
-    return false
+    return null
 }
 
 function checkAccess(request, response, next) {
