@@ -1,33 +1,63 @@
-body#frontpage {
-  background-color: #f2f2f2;
-  font-family: Arial, sans-serif;
-  text-align: center;
-}
-
 body#frontpage h1 {
-    font-style: italic;
+  font-style: italic;
+  margin-bottom: 20px;
+  color: #333;
 }
 
-body#frontpage #login button {
-  padding: 8px 16px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 10px auto;
-  width: 200px;
+body#frontpage h2 {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
 }
 
-body#frontpage #login button:hover {
-  background-color: #0056b3;
+body#frontpage #login {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
 }
 
 body#frontpage #login input {
   display: block;
-  width: 200px;
-  margin: 10px auto;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+body#frontpage #login input:focus {
+  border-color: #007bff;
+}
+
+body#frontpage #login button {
+  width: 100%;
+  margin-top: 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+body#frontpage #login button:hover {
+  background-color: #218838;
+}
+
+body#frontpage #login button:active {
+  transform: scale(0.98);
 }
