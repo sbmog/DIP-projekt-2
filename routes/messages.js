@@ -75,7 +75,7 @@ async function authorizeMessageAccess(request, response) {
     const messageId = parseInt(request.params.messageId)
 
     const currentUserId = request.session.userId
-    const userLevel = request.session.user.userLvl
+    const userLevel = request.session.userLvl
 
     const message = await getMessageById(messageId)
 

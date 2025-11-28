@@ -1,26 +1,5 @@
 [
   {
-    "id": 1,
-    "messageContent": "Hej alle sammen, er I klar til at teste chatten?",
-    "oprettelsesDato": "2025-11-24T09:00:00.000Z",
-    "user": 123,
-    "chat": 1
-  },
-  {
-    "id": 2,
-    "messageContent": "Ja, det ser ud til at virke fint! Hvem har oprettet gruppen?",
-    "oprettelsesDato": "2025-11-24T09:01:00.000Z",
-    "user": 456,
-    "chat": 1
-  },
-  {
-    "id": 3,
-    "messageContent": "Det var mig (Jeppe K). Vi skal snart planlægge julefrokosten!",
-    "oprettelsesDato": "2025-11-24T09:02:00.000Z",
-    "user": 123,
-    "chat": 1
-  },
-  {
     "id": 4,
     "messageContent": "Velkommen til Julefrokost-chatten! Datoen er den 1. december.",
     "oprettelsesDato": "2025-12-01T08:00:00.000Z",
@@ -28,39 +7,11 @@
     "chat": 2
   },
   {
-    "id": 5,
-    "messageContent": "Hej",
-    "oprettelsesDato": "2025-11-24T10:02:03.269Z",
-    "user": 123,
-    "chat": 1
-  },
-  {
     "id": 6,
     "messageContent": "Hej",
     "oprettelsesDato": "2025-11-24T10:04:34.575Z",
     "user": 123,
     "chat": 4
-  },
-  {
-    "id": 7,
-    "messageContent": "flere beskeder",
-    "oprettelsesDato": "2025-11-24T10:05:09.472Z",
-    "user": 123,
-    "chat": 1
-  },
-  {
-    "id": 8,
-    "messageContent": "kom nu",
-    "oprettelsesDato": "2025-11-24T10:05:12.760Z",
-    "user": 123,
-    "chat": 1
-  },
-  {
-    "id": 9,
-    "messageContent": "kom nu",
-    "oprettelsesDato": "2025-11-24T10:05:13.810Z",
-    "user": 123,
-    "chat": 1
   },
   {
     "id": 10,
