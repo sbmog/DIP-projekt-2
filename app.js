@@ -1,5 +1,6 @@
 import express from 'express'
 import session from 'express-session'
+import methodOverride from 'method-override'
 import fs from 'fs'
 
 import loginRouter from './routes/login.js'
@@ -16,6 +17,8 @@ const port = 8090
 
 
 app.set('view engine', 'pug')
+
+// Middlewear
 app.use(express.static('assets'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -27,7 +30,8 @@ try {
     app.locals.cssFiles = [];
 }
 
-// Middlewear
+app.use(methodOverride('_method'))
+
 app.use(session({
     secret: 'Spencer',
     saveUninitialized: true,

@@ -9,10 +9,12 @@ body#chatpage
       a.create-btn(href="./chats/create") Opret ny chat
 
     if userLvl == 3
-      a.create-btn(href="/users/create") Opret ny bruger
+      a.create-btn(href="/users") Administrer brugere
     
     if isLoggedIn
        a.logoutbtn(href="/logout") Log ud
+    else 
+      a.create-btn(href="/") Log ind
 
   ul#chatList
     if chats.length > 0

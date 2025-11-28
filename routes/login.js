@@ -15,39 +15,41 @@ router.get('/chats', (request,response)=>{
     */
 
 // HTTP request
-router.post('/', async (request, response)=>{
+router.post('/', async (request, response) => {
     const username = request.body.username
     const password = request.body.password
-   // Kald den asynkrone funktion. user vil nu indeholde brugerobjektet eller null.
-    const user = await checkUserCredientials(username, password) 
-    
+    // Kald den asynkrone funktion. user vil nu indeholde brugerobjektet eller null.
+    const user = await checkUserCredientials(username, password)
+
     if (user) {
         request.session.isLoggedIn = true
         request.session.userId = user.id
         request.session.userLvl = user.userLvl
         request.session.userName = user.userName
-        response.redirect('/chats')
+        request.session.save(() => {
+            response.redirect('/chats')
+        })
     } else {
-        response.render('error', {data: {username:username, password: password, message: "Forkert brugernavn eller kodeord."}}) 
+        response.render('error', { data: { username: username, password: password, message: "Forkert brugernavn eller kodeord." } })
     }
 })
 
 
 // Hjælpe function (OPDATERET til at returnere brugerobjektet)
-async function checkUserCredientials(username, password){
+async function checkUserCredientials(username, password) {
     const user = await getUserByUsername(username) //
-    
+
     // Tjek om brugeren findes, OG om kodeordet stemmer overens
     if (user && user.password === password) {
         return user // Returner hele brugerobjektet (inkl. ID)
-    } 
+    }
     return null
 }
 
 function checkAccess(request, response, next) {
     console.log("Forsøg på adgang til siden: " + request.url);
     // forsøg på at se /chats siden UDEN at være logget ind
-    if (request.url === '/chats' && !request.session.isLoggedIn){
+    if (request.url === '/chats' && !request.session.isLoggedIn) {
         response.redirect('/')
     } else {
         // du er logget ind :) OK du får adgang

@@ -1,10 +1,12 @@
 include includes/header
 
 body#userAdminPage
-    h1 Brugeradministration (Niveau 3)
+    h1 Brugeradministration
 
-    a.logoutbtn(href="/logout") Log ud
-    a.create-btn(href="/chats") Tilbage til chats
+    div.action-buttons
+        a.create-btn(href="/chats") Se chats
+        a.create-btn(href="/users/create") Opret ny bruger
+
 
     table.user-table
         thead

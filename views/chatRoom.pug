@@ -10,7 +10,9 @@ body#chatpage
       a.back-btn(href="/chats") &larr; Tilbage
       h1 #{chat.name}
       if userLvl === 3 || (userLvl >= 2 && chat.user === currentUser)
-          a.delete-chat-btn(href="/") Slet chat
+        form.delete-chat-form(method="POST" action=`/chats/${chat.id}`)
+          input(type="hidden" name="_method" value="DELETE")
+          button.delete-chat-btn(type="submit") Slet chat
 
     div.messages
       if chat.messages && chat.messages.length > 0

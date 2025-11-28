@@ -7,7 +7,6 @@ import messagesRouter from './messages.js'
 
 
 const router = express.Router()
-router.use('/:id/messages', messagesRouter)
 
 // Nu håndterer messagesRouter alle requests til /chats/:id/messages
 router.use('/:id/messages', messagesRouter)
@@ -17,7 +16,7 @@ router.get('/', async (request, response) => {
     const chats = await getChats()
     const userLevel = request.session.userLvl
 
-    response.render('chats', { chats: chats, userLvl: userLevel})
+    response.render('chats', { chats: chats, userLvl: userLevel })
 })
 
 // OPRETTELSE
@@ -34,10 +33,16 @@ router.post('/create', async (request, response) => {
     }
 
     const chatNavn = request.body.chatName;
-    const currentUserID = request.session.userId
+    const currentUserId = request.session.userId
 
-    await createChat(chatNavn, currentUserID);
-    response.redirect('/chats');
+    if (!currentUserId) {
+        return response.redirect('/');
+    }
+
+    await createChat(chatNavn, currentUserId);
+    request.session.save(() => {
+        response.redirect('/chats')
+    })
 })
 
 // SAMTALE: Vis en specifik chat
@@ -69,6 +74,10 @@ router.get('/:id', async (request, response) => {
     response.render('chatRoom', { chat: chat, currentUser: currentUserId, userLvl: userLevel })
 })
 
+router.post('/:id', (request, response, next) => {
+    next()
+})
+
 router.patch('/:id', async (request, response) => {
     if (!await authorizeChatAccess(request, response)) {
         return
@@ -77,10 +86,11 @@ router.patch('/:id', async (request, response) => {
     const id = parseInt(request.params.id)
     const newName = request.body.name
 
-    // TODO: Implementer updateChat i data/chatData.js og kald den her
-    // await updateChat(id, newName); 
+    await updateChat(id, newName);
 
-    response.status(501).send('PATCH logik skal implementeres i data/chatData.js og kaldes her.')
+    request.session.save(() => {
+        response.redirect('/chats')
+    })
 })
 
 router.delete('/:id', async (request, response) => {
@@ -89,8 +99,11 @@ router.delete('/:id', async (request, response) => {
     }
     const id = parseInt(request.params.id)
     const success = await deleteChat(id);
+
     if (success) {
-        response.status(200).send("Chat slettet")
+        request.session.save(() => {
+            response.redirect('/chats')
+        })
     } else {
         response.status(404).send("Chatten blev ikke fundet")
     }

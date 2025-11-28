@@ -30,7 +30,9 @@ router.post('/create', async (request, response) => {
 
     try {
         await createUser(username, password, level)
-        response.redirect('/chats')
+        request.session.save(() => {
+            response.redirect('/chats')
+        })
     } catch (error) {
         console.error('Fejl ved oprettelse af bruger:', error)
         response.status(400).send(`Fejl ved oprettelse: ${error.message}`)
@@ -38,8 +40,16 @@ router.post('/create', async (request, response) => {
 })
 
 router.get('/', async (request, response) => {
-    const users = await getUsers()
-    response.json(users)
+    const allUsers = await getUsers()
+
+    const safeUsers = allUsers.map(u => ({
+        id: u.id,
+        userName: u.userName,
+        oprettelsesDato: u.oprettelsesDate,
+        userLvl: u.userLvl
+    }))
+
+    response.render('userList', { users: safeUsers, title: 'Brugeradministration' })
 })
 
 router.get('/:id', async (request, response) => {

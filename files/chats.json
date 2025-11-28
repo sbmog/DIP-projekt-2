@@ -40,5 +40,12 @@
     "oprettelsesDato": "2025-11-28T08:14:37.527Z",
     "user": 123,
     "messages": []
+  },
+  {
+    "id": 8,
+    "name": "sleeet",
+    "oprettelsesDato": "2025-11-28T12:57:10.049Z",
+    "user": 3,
+    "messages": []
   }
 ]

@@ -16,7 +16,9 @@ router.post('/', async (request, response) => {
     try {
         await createMessage(messageContent, userId, chatId); //
         // Omdiriger tilbage til chatrummet
-        response.redirect(`/chats/${chatId}`);
+        request.session.save(() => {
+            response.redirect(`/chats/${chatId}`);
+        })
     } catch (error) {
         console.error("Fejl ved oprettelse af besked:", error);
         response.status(500).send("Fejl ved oprettelse af besked");
@@ -36,7 +38,9 @@ router.patch('/:messageId', async (request, response) => {
     try {
         const updatedMsg = await updateMessage(messageId, newContent);
         if (updatedMsg) {
-            response.redirect(`/chats/${chatId}`);
+            request.session.save(() => {
+                response.redirect(`/chats/${chatId}`);
+            })
         } else {
             response.status(404).send("Besked ikke fundet");
         }
@@ -60,7 +64,9 @@ router.delete('/:messageId', async (request, response) => {
 
         if (success) {
             // Omdiriger tilbage til chatrummet
-            response.redirect(`/chats/${chatId}`)
+            request.session.save(() => {
+                response.redirect(`/chats/${chatId}`)
+            })
         } else {
             response.status(404).send('Besked ikke fundet')
         }
