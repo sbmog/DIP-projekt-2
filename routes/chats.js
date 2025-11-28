@@ -51,7 +51,7 @@ router.get('/:id', async (request, response) => {
         }
     })
 
-    response.render('chatRoom', { chat: chat, currentUser: currentUserId })
+    response.render('chatRoom', { chat: chat, currentUser: request.session.userId })
 })
 
 
