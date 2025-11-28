@@ -40,5 +40,12 @@
     "oprettelsesDato": "2025-11-24T10:41:53.365Z",
     "user": 123,
     "messages": []
+  },
+  {
+    "id": 7,
+    "name": "Halloween fest 🕷️",
+    "oprettelsesDato": "2025-11-28T08:14:37.527Z",
+    "user": 123,
+    "messages": []
   }
 ]
