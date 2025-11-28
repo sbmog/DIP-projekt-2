@@ -1,6 +1,3 @@
-/* Fil: assets/css/createUserStyle.css */
-
-/* 1. CONTAINER CENTRERING */
 body#createUserPage {
   display: flex;
   flex-direction: column;
@@ -9,7 +6,6 @@ body#createUserPage {
   min-height: 80vh;       
 }
 
-/* 2. OVERSKRIFT STIL */
 body#createUserPage h1 {
   color: #333;
   margin-bottom: 30px;
@@ -17,7 +13,6 @@ body#createUserPage h1 {
   text-align: center;
 }
 
-/* 3. FORMULARENS STIL OG CENTRERING */
 body#createUserPage form {
   background-color: white;
   padding: 40px;
@@ -25,15 +20,12 @@ body#createUserPage form {
   box-shadow: 0 10px 25px rgba(0,0,0,0.05);
   display: flex;
   flex-direction: column;
-  
-  /* Løsning for centrering */
-  box-sizing: border-box;
+    box-sizing: border-box;
   width: 100%;
   max-width: 500px; 
   margin: 0 auto; 
 }
 
-/* 4. FELT STIL */
 body#createUserPage label {
   margin-bottom: 8px;
   font-weight: 600;
@@ -61,8 +53,6 @@ body#createUserPage select:focus {
   border-color: #007bff;
 }
 
-/* 5. KNAPPER */
-/* Opret knappen (Grøn) */
 body#createUserPage button[type="submit"] {
   background-color: #28a745; /* GRØN */
   color: white;
@@ -79,7 +69,6 @@ body#createUserPage button[type="submit"]:hover {
   background-color: #218838;
 }
 
-/* Anullerings knappen (Rød) */
 .cancel-btn {
   display: block;
   text-align: center;
