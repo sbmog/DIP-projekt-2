@@ -124,5 +124,12 @@
     "oprettelsesDato": "2025-11-28T08:17:13.289Z",
     "user": 2,
     "chat": 3
+  },
+  {
+    "id": 19,
+    "messageContent": "fwe",
+    "oprettelsesDato": "2025-11-28T09:17:52.043Z",
+    "user": 2,
+    "chat": 5
   }
 ]

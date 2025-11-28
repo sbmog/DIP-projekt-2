@@ -14,7 +14,9 @@ router.use('/:id/messages', messagesRouter)
 // OVERSIGT: Vis listen af chats
 router.get('/', async (request, response) => {
     const chats = await getChats()
-    response.render('chats', { chats: chats })
+    const userLevel = request.session.userLvl
+
+    response.render('chats', { chats: chats, userLvl: userLevel})
 })
 
 // OPRETTELSE
@@ -60,7 +62,10 @@ router.get('/:id', async (request, response) => {
         }
     })
 
-    response.render('chatRoom', { chat: chat, currentUser: request.session.userId })
+    const currentUserId = request.session.userId
+    const userLevel = request.session.userLvl
+
+    response.render('chatRoom', { chat: chat, currentUser: currentUserId, userLvl: userLevel })
 })
 
 router.patch('/:id', async (request, response) => {
