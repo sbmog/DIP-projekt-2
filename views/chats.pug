@@ -12,18 +12,26 @@ body#chatpage
       a.create-btn(href="/users/create") Opret ny bruger
     
     if isLoggedIn
-       // Link /logout rute i app.js
        a.logoutbtn(href="/logout") Log ud
 
   ul#chatList
     if chats.length > 0
       each chat in chats
-        // HUSK: klassen .chat-item her (for at få dem på række)
         li.chat-item
-          // HUSK: klassen .chat-link her (så den fylder resten af pladsen)
           a.chat-link(href=`/chats/${chat.id}`) #{chat.name}
-
           if userLvl === 3 || (userLvl >= 2 && chat.user === userId)
-          a.delete-chat-btn(href="/") Slet chat
+              a.delete-chat-btn(href="javascript:void(0)", onclick=`deleteChat(${chat.id})`) 🗑️
     else
       p Ingen chats fundet.
+script.
+    async function deleteChat(chatId) {
+      if (!confirm('Er du sikker på, at du vil slette denne chat?')) return;
+      const response = await fetch('/chats/' + chatId, {
+        method: 'DELETE'
+      });
+      if (response.ok) {
+        window.location.reload();
+      } else {
+        alert('Der skete en fejl. Kunne ikke slette chatten.');
+      }
+    }

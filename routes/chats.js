@@ -1,9 +1,10 @@
 import express from 'express'
 // 1. Importer funktionen til at hente data
-import { getChats, createChat } from '../data/chatData.js'
+import { getChats, createChat, deleteChat } from '../data/chatData.js'
 import { getMessagesByChat } from '../data/messageData.js'
 import { getUsers } from '../data/userData.js'
 import messagesRouter from './messages.js'
+
 
 const router = express.Router()
 router.use('/:id/messages', messagesRouter)
@@ -86,13 +87,13 @@ router.delete('/:id', async (request, response) => {
     if (!await authorizeChatAccess(request, response)) {
         return
     }
-
     const id = parseInt(request.params.id)
-
-    // TODO: Implementer deleteChat i data/chatData.js og kald den her
-    // await deleteChat(id); 
-
-    response.status(501).send('DELETE logik skal implementeres i data/chatData.js og kaldes her.')
+    const success = await deleteChat(id);
+    if (success) {
+        response.status(200).send("Chat slettet")
+    } else {
+        response.status(404).send("Chatten blev ikke fundet")
+    }
 })
 
 // hjælpe funktion til at tjekke userLevel opfylder min.
@@ -112,7 +113,7 @@ async function authorizeChatAccess(request, response) {
     const id = parseInt(request.params.id)
 
     const currentUserId = request.session.userId
-    const userLevel = request.session.user.userLvl
+    const userLevel = request.session.userLvl
 
     const chats = await getChats()
     const chat = chats.find(c => c.id === id)
