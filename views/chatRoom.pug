@@ -10,6 +10,8 @@ body#chatpage
       // &larr; er en omvendt pil <--
       a.back-btn(href="/chats") &larr; Tilbage
       h1 #{chat.name}
+      if userLvl === 3 || (userLvl >= 2 && msg.userId === currentUser)
+      a.delete-chat-btn(href="/") Slet chat
 
     div.messages
       if chat.messages && chat.messages.length > 0
