@@ -3,18 +3,25 @@ import { createUser, getUsers } from '../data/userData.js'
 
 const router = express.Router()
 
-// Middleware til at sikre, at brugeren er logget ind og er Level 3
-function authorizeAdmin(request, response, next) {
-    const userLevel = request.session.userLvl
+//Hjælpe function
+function authorizeAdmin(request, response) {
+    if (request.session.userLvl === 3) {
+        return true
+    }
+    response.status(403).send('Adgang nægtet. Kræver administrator (Niveau 3) rettigheder.')
+    return false
+}
 
 //EndPoint
 
+// OPRET BRUGER: Vis formular (Kun Admin)
 router.get('/create', (request, response) => {
     if (!authorizeAdmin(request, response)) return
 
-    response.render('createUser', {title: 'Opret bruger'})
+    response.render('createUser', { title: 'Opret bruger' })
 })
 
+// OPRET BRUGER: Håndter POST (Kun Admin)
 router.post('/create', async (request, response) => {
     if (!authorizeAdmin(request, response)) return
 
@@ -35,7 +42,7 @@ router.get('/', async (request, response) => {
     response.json(users)
 })
 
-router.get('/:id', async(request, response) => {
+router.get('/:id', async (request, response) => {
     const id = parseInt(request.params.id)
     const users = await getUsers()
 
@@ -45,34 +52,8 @@ router.get('/:id', async(request, response) => {
     //Hvis user ikke findes
     if (!user) {
         return response.status(404).json({ error: "User ikke fundet" })
-}
-
-router.use(authorizeAdmin)
-
-// Endpoint: GET /users/
-// Hent og vis alle brugere (Admin only)
-router.get('/', async (request, response) => {
-    // Kald funktionen til at hente alle brugere
-    const allUsers = await getUsers() 
-
-    // Sender user info, men ikke password
-    const safeUsers = allUsers.map(u => ({
-        id: u.id,
-        userName: u.userName,
-        oprettelsesDato: u.oprettelsesDate,
-        userLvl: u.userLvl
-    }))
-
-    response.render('userList', { users: safeUsers, title: 'Brugeradministration' }) // 'userList' er den nye Pug-fil
-})
-
-//Hjælpe function
-function authorizeAdmin(request, response) {
-    if (request.session.userLvl === 3) {
-        return true
     }
-    response.status(403).send('Adgang nægtet. Kræver administrator (Niveau 3) rettigheder.')
-    return false
-}
+    response.json(user)
+})
 
 export default router
