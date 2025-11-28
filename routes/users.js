@@ -31,7 +31,7 @@ router.post('/create', async (request, response) => {
     try {
         await createUser(username, password, level)
         request.session.save(() => {
-            response.redirect('/chats')
+            response.redirect('/users')
         })
     } catch (error) {
         console.error('Fejl ved oprettelse af bruger:', error)

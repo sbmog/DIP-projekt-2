@@ -74,10 +74,6 @@ router.get('/:id', async (request, response) => {
     response.render('chatRoom', { chat: chat, currentUser: currentUserId, userLvl: userLevel })
 })
 
-router.post('/:id', (request, response, next) => {
-    next()
-})
-
 router.patch('/:id', async (request, response) => {
     if (!await authorizeChatAccess(request, response)) {
         return
@@ -102,7 +98,7 @@ router.delete('/:id', async (request, response) => {
 
     if (success) {
         request.session.save(() => {
-            response.redirect('/chats')
+            response.status(204).send()
         })
     } else {
         response.status(404).send("Chatten blev ikke fundet")

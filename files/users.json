@@ -28,10 +28,17 @@
     "userLvl": 1
   },
   {
-    "id": 124,
+    "id": 5,
     "userName": "test1",
     "password": "111",
     "oprettelsesDate": "2025-11-28T10:33:44.847Z",
+    "userLvl": 1
+  },
+  {
+    "id": 6,
+    "userName": "test2",
+    "password": "222",
+    "oprettelsesDate": "2025-11-28T13:30:00.411Z",
     "userLvl": 1
   }
 ]
