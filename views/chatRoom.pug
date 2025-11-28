@@ -13,7 +13,7 @@ body#chatpage
         ul
           each msg in chat.messages
             li.message-bubble 
-              strong.user-name #{msg.user || 'Bruger'}:
+              strong.user-name #{msg.userName || 'Bruger'}:
               span.message-text #{msg.messageContent || msg.content}
       else
         p.no-messages Ingen beskeder endnu. Vær den første til at skrive!
