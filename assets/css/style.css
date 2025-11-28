@@ -26,3 +26,57 @@ body {
   background-color: #c82333;
   transform: translateY(-2px);
 }
+
+.delete-chat-btn:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-chat-btn {
+  color: #ee495a;
+  border: 1px solid #dc3545;
+  text-decoration: none;
+  font-size: 0.9rem;
+  background: rgba(255,255,255,0.2);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Userlist */
+
+#userAdminPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-table {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.user-table th, .user-table td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.user-table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: 600;
+}
+
+.user-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.user-table tbody tr:hover {
+    background-color: #e2f4ff;
+}
