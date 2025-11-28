@@ -1,0 +1,27 @@
+include includes/header
+
+body#userAdminPage
+    h1 Brugeradministration (Niveau 3)
+
+    a.logoutbtn(href="/logout") Log ud
+    a.create-btn(href="/chats") Tilbage til chats
+
+    table.user-table
+        thead
+            tr
+                th ID
+                th Brugernavn
+                th Niveau
+                th Oprettet dato
+        tbody
+            if users.length > 0
+                each user in users
+                    tr
+                        td #{user.id}
+                        td #{user.userName}
+                        td #{user.userLvl}
+                        td #{new Date(user.oprettelsesDato).toLocaleDateString()}
+            else
+                tr
+                    td(colspan="4") Ingen brugere fundet.
+    
