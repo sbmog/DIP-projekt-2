@@ -4,9 +4,12 @@ body#userAdminPage
     h1 Brugeradministration
 
     div.action-buttons
-        a.create-btn(href="/chats") Se chats
-        a.create-btn(href="/users/create") Opret ny bruger
-
+        if isLoggedIn 
+            a.create-btn(href="/chats") Se chats
+            a.create-btn(href="/users/create") Opret ny bruger
+            a.logoutbtn(href="/logout") Log ud 
+        else 
+            a.create-btn(href="/") Log ind
 
     table.user-table
         thead

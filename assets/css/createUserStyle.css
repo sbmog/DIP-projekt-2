@@ -1,4 +1,7 @@
-body#createChat {
+/* Fil: assets/css/createUserStyle.css */
+
+/* 1. CONTAINER CENTRERING */
+body#createUserPage {
   display: flex;
   flex-direction: column;
   align-items: center;    
@@ -6,34 +9,41 @@ body#createChat {
   min-height: 80vh;       
 }
 
-body#createChat h1 {
+/* 2. OVERSKRIFT STIL */
+body#createUserPage h1 {
   color: #333;
   margin-bottom: 30px;
   font-size: 2rem;
   text-align: center;
 }
 
-body#createChat form {
+/* 3. FORMULARENS STIL OG CENTRERING */
+body#createUserPage form {
   background-color: white;
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.05);
   display: flex;
   flex-direction: column;
+  
+  /* Løsning for centrering */
+  box-sizing: border-box;
   width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
+  max-width: 500px; 
+  margin: 0 auto; 
 }
 
-body#createChat label {
+/* 4. FELT STIL */
+body#createUserPage label {
   margin-bottom: 8px;
   font-weight: 600;
   color: #555;
   font-size: 14px;
 }
 
-
-body#createChat input[type="text"] {
+body#createUserPage input[type="text"], 
+body#createUserPage input[type="password"],
+body#createUserPage select {
   padding: 12px 15px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -41,15 +51,20 @@ body#createChat input[type="text"] {
   font-size: 16px;
   transition: border-color 0.2s;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-body#createChat input[type="text"]:focus {
+body#createUserPage input[type="text"]:focus,
+body#createUserPage input[type="password"]:focus,
+body#createUserPage select:focus {
   border-color: #007bff;
 }
 
-/* Opret knappen */
-body#createChat button {
-  background-color: #28a745;
+/* 5. KNAPPER */
+/* Opret knappen (Grøn) */
+body#createUserPage button[type="submit"] {
+  background-color: #28a745; /* GRØN */
   color: white;
   border: none;
   padding: 12px;
@@ -60,20 +75,15 @@ body#createChat button {
   transition: background-color 0.2s, transform 0.1s;
 }
 
-body#createChat button:hover {
+body#createUserPage button[type="submit"]:hover {
   background-color: #218838;
 }
 
-body#createChat button:active {
-  transform: scale(0.98);
-}
-
-/* Anullerings knappen */
+/* Anullerings knappen (Rød) */
 .cancel-btn {
   display: block;
   text-align: center;
-  
-  background-color: #dc3545;
+  background-color: #dc3545; /* RØD */
   color: white;
   border: none;
   padding: 12px;
@@ -89,8 +99,4 @@ body#createChat button:active {
 
 .cancel-btn:hover {
   background-color: #c82333;
-}
-
-.cancel-btn:active {
-  transform: scale(0.98);
 }
