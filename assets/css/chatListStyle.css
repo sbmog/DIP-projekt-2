@@ -34,7 +34,7 @@ h1 {
   border-bottom: none;
 }
 
-body#chatpage > a {
+.create-btn{
   background-color: #28a745;
   color: white;
   padding: 12px 25px;
@@ -47,7 +47,7 @@ body#chatpage > a {
   display: inline-block;
 }
 
-body#chatpage > a:hover {
+.create-btn:hover {
   background-color: #218838;
   transform: translateY(-2px);
 }
@@ -66,4 +66,12 @@ body#chatpage > a:hover {
   background-color: #f8f9fa;
   padding-left: 35px;
   color: #007bff;
+}
+
+.action-buttons {
+  display: flex;           
+  flex-direction: row;
+  gap: 20px;
+  margin-bottom: 30px;
+  align-items: center;
 }

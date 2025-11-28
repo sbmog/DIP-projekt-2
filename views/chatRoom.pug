@@ -13,7 +13,7 @@ body#chatpage
         ul
           each msg in chat.messages
             li.message-bubble 
-              strong.user-name #{msg.user || 'Bruger'}:
+              strong.user-name #{msg.userName || 'Bruger'}:
               span.message-text #{msg.messageContent || msg.content}
       else
         p.no-messages Ingen beskeder endnu. Vær den første til at skrive!
@@ -22,3 +22,6 @@ body#chatpage
     form.chat-form(action=`/chats/${chat.id}/messages` method="POST")
       input(type="text" name="content" placeholder="Skriv en besked..." required autocomplete="off")
       button(type="submit") Send
+  if isLoggedIn
+       // Link /logout rute i app.js
+       a.logoutbtn(href="/logout") Log ud

@@ -2,9 +2,15 @@ include includes/header
 
 body#chatpage
   h1 Chat oversigt
-  
-  // Link til at oprette en ny chat (hvis du vil have det)
-  a(href="./chats/create") Opret ny chat
+
+  div.action-buttons
+    // Link til at oprette en ny chat
+    a.create-btn(href="./chats/create") Opret ny chat
+    
+    if isLoggedIn
+       // Link /logout rute i app.js
+       a.logoutbtn(href="/logout") Log ud
+
   ul#chatList
     if chats.length > 0
       each chat in chats
