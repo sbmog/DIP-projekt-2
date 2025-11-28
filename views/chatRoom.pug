@@ -10,7 +10,7 @@ body#chatpage
       a.back-btn(href="/chats") &larr; Tilbage
       h1 #{chat.name}
       if userLvl === 3 || (userLvl >= 2 && chat.user === currentUser)
-        a.delete-chat-btn(href="javascript:void(0)", onclick=`deleteCurrentChat(${chat.id})`) Slet chat
+        a.delete-chat-btn(href="#", data-chat-id=`${chat.id}`) Slet chat
 
     div.messages
       if chat.messages && chat.messages.length > 0
@@ -25,19 +25,3 @@ body#chatpage
       form.chat-form(action=`/chats/${chat.id}/messages` method="POST")
         input(type="text" name="content" placeholder="Skriv en besked..." required autocomplete="off")
         button(type="submit") Send
-
-script.
-    async function deleteCurrentChat(chatId) {
-        if (!confirm('Er du sikker på, at du vil slette denne chat?')) return;
-
-        const response = await fetch('/chats/' + chatId, {
-            method: 'DELETE'
-        });
-
-        // Tjekker om serveren svarede med succes (status 204 No Content)
-        if (response.status === 204) {
-            window.location.href = '/chats'; 
-        } else {
-            alert('Sletning mislykkedes. Tjek dine rettigheder og prøv igen.');
-        }
-    }
