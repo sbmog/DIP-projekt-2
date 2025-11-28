@@ -50,7 +50,9 @@ export async function createUser(userName, password, userLvl) {
     if (users.find(u => u.userName === userName)) {
         throw new Error("User with this username already exists");
     }
-
+    // Beregn næste ID:
+    // Vi bruger "..." (spread) til at pakke listen af ID'er ud, så Math.max kan læse dem.
+    // Hvis listen er tom, starter vi på 1.
     const id = users.length ? Math.max(...users.map(u => u.id)) + 1 : 1;
 
     const user = new User(id, userName, password, userLvl);
