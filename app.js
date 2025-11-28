@@ -33,6 +33,14 @@ app.use(session({
     saveUninitialized: true,
     resave: true
 }))
+
+app.use((request, response, next) => {
+    response.locals.isLoggedIn = request.session.isLoggedIn;
+    response.locals.userId = request.session.userId;
+    response.locals.userName = request.session.userName;
+    next();
+});
+
 app.use('/login', loginRouter)
 app.use('/chats', chatsRouter)
 app.use('/users', usersRouter)

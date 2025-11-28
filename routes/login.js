@@ -25,6 +25,7 @@ router.post('/', async (request, response)=>{
         request.session.isLoggedIn = true
         request.session.userId = user.id
         request.session.userLvl = user.userLvl
+        request.session.userName = user.userName
         response.redirect('/chats')
     } else {
         response.render('error', {data: {username:username, password: password, message: "Forkert brugernavn eller kodeord."}}) 

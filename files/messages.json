@@ -103,5 +103,26 @@
     "oprettelsesDato": "2025-11-24T10:42:00.392Z",
     "user": 3,
     "chat": 6
+  },
+  {
+    "id": 16,
+    "messageContent": "Klar til nytår 2025",
+    "oprettelsesDato": "2025-11-28T08:13:20.877Z",
+    "user": 1,
+    "chat": 4
+  },
+  {
+    "id": 17,
+    "messageContent": "Halloween 2026 🕷️🕷️🕷️🕷️",
+    "oprettelsesDato": "2025-11-28T08:14:53.805Z",
+    "user": 1,
+    "chat": 7
+  },
+  {
+    "id": 18,
+    "messageContent": "Hej",
+    "oprettelsesDato": "2025-11-28T08:17:13.289Z",
+    "user": 2,
+    "chat": 3
   }
 ]
