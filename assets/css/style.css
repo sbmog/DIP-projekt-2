@@ -26,3 +26,18 @@ body {
   background-color: #c82333;
   transform: translateY(-2px);
 }
+
+.delete-chat-btn:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-chat-btn {
+  color: #ee495a;
+  border: 1px solid #dc3545;
+  text-decoration: none;
+  font-size: 0.9rem;
+  background: rgba(255,255,255,0.2);
+  padding: 5px 10px;
+  border-radius: 5px;
+}

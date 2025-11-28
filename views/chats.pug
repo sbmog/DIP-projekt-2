@@ -15,8 +15,12 @@ body#chatpage
   ul#chatList
     if chats.length > 0
       each chat in chats
-        li
-          // Link til den enkelte chat-samtale
-          a(href=`/chats/${chat.id}`) #{chat.name}
+        // HUSK: klassen .chat-item her (for at få dem på række)
+        li.chat-item
+          // HUSK: klassen .chat-link her (så den fylder resten af pladsen)
+          a.chat-link(href=`/chats/${chat.id}`) #{chat.name}
+
+          if userLvl === 3 || (userLvl >= 2 && chat.user === userId)
+          a.delete-chat-btn(href="/") Slet chat
     else
       p Ingen chats fundet.

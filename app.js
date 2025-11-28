@@ -38,6 +38,7 @@ app.use((request, response, next) => {
     response.locals.isLoggedIn = request.session.isLoggedIn;
     response.locals.userId = request.session.userId;
     response.locals.userName = request.session.userName;
+    response.locals.userLvl = request.session.userLvl;
     next();
 });
 
