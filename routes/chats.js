@@ -45,12 +45,13 @@ router.get('/:id', async (request, response) => {
         const userObj = users.find(u => u.id == msg.user);
         return { 
             content: msg.messageContent,
-            user: userObj ? userObj.userName : 'Bruger ' + msg.user, 
+            userName: userObj ? userObj.userName : 'Bruger ' + msg.user,
+            userId: msg.user,
             oprettelsesDato: msg.oprettelsesDato
         }
     })
 
-    response.render('chatRoom', { chat: chat }) 
+    response.render('chatRoom', { chat: chat, currentUser: currentUserId })
 })
 
 
