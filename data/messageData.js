@@ -83,3 +83,15 @@ export async function deleteMessage(messageId) {
     await saveMessages(newMessages);
     return true; // Besked slettet
 }
+
+export async function deleteMessagesByChat(chatId) {
+    const messages = await getMessages()
+    
+    // Filtrer beskeder, der IKKE tilhører den specificerede chat
+    const updatedMessages = messages.filter(msg => msg.chat !== chatId)
+    
+    // Gem de resterende beskeder
+    await saveMessages(updatedMessages)
+    
+    return true
+}

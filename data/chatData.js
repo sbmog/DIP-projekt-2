@@ -1,5 +1,6 @@
 import { promises as fs } from "fs"
 import Chat from "../models/chat.js"
+import { deleteMessagesByChat } from './messageData.js'
 
 const FILE = "./files/chats.json"
 
@@ -30,4 +31,55 @@ export async function createChat(name, userId) {
 
     await saveChats(chats);
     return chat;
+}
+
+// Hent chats for en specifik bruger
+export async function getChatsByUser(userId) {
+    const chats = await getChats();
+    // Filtrerer alle chats og returnerer kun dem, hvor brugeren er opretteren
+    return chats.filter(c => c.user === userId);
+}
+
+//Updater chat
+export async function updateChat(id, newName) {
+    const chats = await getChats()
+    const chatIndex = chats.findIndex(chat => chat.id === id)
+
+    if (chatIndex === -1) {
+        return null // Chat ikke fundet
+    }
+
+    // Opdater navnet
+    chats[chatIndex].name = newName
+    
+    // Gem ændringerne
+    await saveChats(chats)
+    
+    return chats[chatIndex]
+}
+
+// Slet chat
+export async function deleteChat(id) {
+    const chats = await getChats()
+    const initialLength = chats.length
+    
+    // 1. Slet alle beskeder, der tilhører chatten (VIGTIGT for dataintegritet)
+    try {
+        // Kald den nye funktion i messageData.js
+        await deleteMessagesByChat(id)
+    } catch (error) {
+        console.error(`Fejl: Kunne ikke slette beskeder for chat ${id}. Fortsætter med at slette chat.`, error)
+    }
+    
+    // 2. Filtrer chatten fra listen
+    const updatedChats = chats.filter(chat => chat.id !== id)
+    
+    if (updatedChats.length === initialLength) {
+        return false // Ingen chat blev slettet
+    }
+
+    // 3. Gem den opdaterede chat-liste
+    await saveChats(updatedChats)
+    
+    return true // Sletning lykkedes
 }
