@@ -7,6 +7,9 @@ body#chatpage
     // Link til at oprette en ny chat
     if userLvl >=2
       a.create-btn(href="./chats/create") Opret ny chat
+
+    if userLvl == 3
+      a.create-btn(href="/users/create") Opret ny bruger
     
     if isLoggedIn
        // Link /logout rute i app.js

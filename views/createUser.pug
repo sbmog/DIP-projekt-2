@@ -1,0 +1,22 @@
+include includes/header
+
+body#createChat 
+  h1 Opret Ny Bruger (Admin)
+
+  #create
+    form(action="/users/create" method="POST")
+        label Brugernavn:
+        input(type="text" name="username" required)
+      
+        label Kodeord:
+        input(type="password" name="password" required)
+      
+        br
+        label Brugerniveau (1-3):
+
+        select(name="userLvl" required)
+            option(value="1") Niveau 1 (Se chats)
+            option(value="2") Niveau 2 (Ejer CRUD)
+        
+        br
+        button(type="submit") Opret Bruger

@@ -10,6 +10,7 @@ body#createChat h1 {
   color: #333;
   margin-bottom: 30px;
   font-size: 2rem;
+  text-align: center;
 }
 
 body#createChat form {
@@ -21,6 +22,8 @@ body#createChat form {
   flex-direction: column;
   width: 100%;
   max-width: 400px;
+  align-self: center;
+  margin: 0 auto;
 }
 
 body#createChat label {

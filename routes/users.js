@@ -1,16 +1,41 @@
 import express from 'express'
+import { createUser, getUsers } from '../data/userData.js'
+
 const router = express.Router()
 
 //MiddleWare
 
 //EndPoint
 
-router.get('/', (request, response) => {
+router.get('/create', (request, response) => {
+    if (!authorizeAdmin(request, response)) return
+
+    response.render('createUser', {title: 'Opret bruger'})
+})
+
+router.post('/create', async (request, response) => {
+    if (!authorizeAdmin(request, response)) return
+
+    const { username, password, userLvl } = request.body
+    const level = parseInt(userLvl) || 1
+
+    try {
+        await createUser(username, password, level)
+        response.redirect('/chats')
+    } catch (error) {
+        console.error('Fejl ved oprettelse af bruger:', error)
+        response.status(400).send(`Fejl ved oprettelse: ${error.message}`)
+    }
+})
+
+router.get('/', async (request, response) => {
+    const users = await getUsers()
     response.json(users)
 })
 
-router.get('/:id', (request, response) => {
+router.get('/:id', async(request, response) => {
     const id = parseInt(request.params.id)
+    const users = await getUsers()
 
     //Find den specifikke user
     const user = users.find(user => user.id === id)
@@ -25,5 +50,14 @@ router.get('/:id', (request, response) => {
 router.get('/:id/messages', (request, response) => {
 
 })
+
+//Hjælpe function
+function authorizeAdmin(request, response) {
+    if (request.session.userLvl === 3) {
+        return true
+    }
+    response.status(403).send('Adgang nægtet. Kræver administrator (Niveau 3) rettigheder.')
+    return false
+}
 
 export default router
