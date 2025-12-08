@@ -28,7 +28,7 @@ body#userAdminPage
                         td #{user.userName}
                         td #{user.userLvl}
                         td #{new Date(user.oprettelsesDato).toLocaleDateString()}
-                        td #{user.isOnline}                       
+                        td #{user.isOnline ? "🟢" : "🔴"}
                         td
                             a.delete-chat-btn(href="javascript:void(0)", onclick=`deleteUser(${user.id})`) Slet 
             else

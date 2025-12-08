@@ -21,13 +21,6 @@
     "chat": 3
   },
   {
-    "id": 11,
-    "messageContent": "Jaaaaaa",
-    "oprettelsesDato": "2025-11-24T10:37:11.236Z",
-    "user": 3,
-    "chat": 2
-  },
-  {
     "id": 12,
     "messageContent": "Vi jo færdig i 2027 så vi skal da holde en fest",
     "oprettelsesDato": "2025-11-24T10:37:57.156Z",
@@ -40,13 +33,6 @@
     "oprettelsesDato": "2025-11-24T10:38:15.284Z",
     "user": 3,
     "chat": 5
-  },
-  {
-    "id": 14,
-    "messageContent": "🎄🎄🎄",
-    "oprettelsesDato": "2025-11-24T10:38:35.210Z",
-    "user": 3,
-    "chat": 2
   },
   {
     "id": 15,
@@ -85,22 +71,8 @@
   },
   {
     "id": 20,
-    "messageContent": "Haloo",
-    "oprettelsesDato": "2025-12-08T08:00:31.094Z",
-    "user": 3,
-    "chat": 2
-  },
-  {
-    "id": 21,
-    "messageContent": "hallo",
-    "oprettelsesDato": "2025-12-08T08:01:35.349Z",
-    "user": 3,
-    "chat": 2
-  },
-  {
-    "id": 22,
-    "messageContent": "HALLO",
-    "oprettelsesDato": "2025-12-08T08:07:07.448Z",
+    "messageContent": "Omg fedt!",
+    "oprettelsesDato": "2025-12-08T09:10:38.795Z",
     "user": 3,
     "chat": 2
   }

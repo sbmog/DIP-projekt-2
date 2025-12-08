@@ -21,18 +21,29 @@ body#chatpage
             li.message-bubble(data-message-id=msg.id)
               div.message-content
                 strong.user-name #{msg.userName || 'Bruger'}:
-                span.message-text #{msg.messageContent || msg.content}
-              
-              // MENU START (Kun for besked-ejer)
+                
+                // 1. VISNING: Den normale tekst (Synlig som standard)
+                span.message-text(id=`text-${msg.id}`) #{msg.messageContent || msg.content}
+                
+                // 2. REDIGERING: Skjult formular til at rette (Skjult som standard)
+                if msg.userId == currentUser
+                  form.edit-form(id=`edit-form-${msg.id}` action=`/chats/${chat.id}/messages/${msg.id}?_method=PATCH` method="POST" style="display:none;")
+                    input.edit-input(type="text" name="content" value=(msg.messageContent || msg.content) required autocomplete="off")
+                    div.edit-buttons
+                      button.save-btn(type="submit") Gem
+                      button.cancel-btn-small(type="button" onclick=`toggleEdit('${msg.id}')`) Fortryd
+
+              // MENU (Kun for ejeren)
               if msg.userId == currentUser
                 div.menu-container
                   span.dots &#8942;
                   div.dropdown-menu
-                    // Slet knap
-                    form(action=`/chats/${chat.id}/messages/${msg.id}?_method=DELETE` method="POST")
+                    // Slet knap (Med bekræftelse)
+                    form(action=`/chats/${chat.id}/messages/${msg.id}?_method=DELETE` method="POST" onsubmit="return confirm('Er du sikker på, at du vil slette denne besked?');")
                       button.delete-msg-btn(type="submit") Slet
-                    // Ret knap (Link for nu)
-                    a.edit-msg-btn(href="#") Ret
+                    
+                    // Ret knap
+                    button.edit-msg-btn(type="button" onclick=`toggleEdit('${msg.id}')`) Ret
       else
         p.no-messages Ingen beskeder endnu. Vær den første til at skrive!
 
