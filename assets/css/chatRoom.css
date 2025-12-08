@@ -216,3 +216,47 @@ body#chatpage {
 .edit-msg-btn:hover {
   background-color: #f8f9fa;
 }
+
+
+/* --- Styling til Edit Mode --- */
+.edit-form {
+  margin-top: 5px;
+  width: 100%;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.save-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.cancel-btn-small {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.save-btn:hover { background-color: #218838; }
+.cancel-btn-small:hover { background-color: #5a6268; }
