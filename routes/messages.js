@@ -77,11 +77,11 @@ router.delete('/:messageId', async (request, response) => {
 })
 
 // Hjælpe function til tjekke ejerskab/admin
+// STORE ÆNDERINGER !!!!!
 async function authorizeMessageAccess(request, response) {
     const messageId = parseInt(request.params.messageId)
-
     const currentUserId = request.session.userId
-    const userLevel = request.session.userLvl
+    // Vi behøver ikke userLvl længere, da kun ejer må slette
 
     const message = await getMessageById(messageId)
 
@@ -90,14 +90,14 @@ async function authorizeMessageAccess(request, response) {
         return false
     }
 
-    const isLevel3Admin = userLevel === 3
     const isOwner = message.user === currentUserId
 
-    if (isLevel3Admin || (userLevel >= 2 && isOwner)) {
-        request.chat = chat
+    // Tjekker KUN om man er ejer (fjerner isLevel3Admin tjekket)
+    if (isOwner) { 
+        request.chat = message.chat // (Valgfrit: kan bruges hvis du skal vide hvilken chat det er)
         return true
     } else {
-        response.status(403).send('Adgang nægtet. Du har ikke tilladelse til at rette/slette denne besked.')
+        response.status(403).send('Adgang nægtet. Kun ejeren kan slette denne besked.')
         return false
     }
 }
