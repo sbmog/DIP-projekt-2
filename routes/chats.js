@@ -14,11 +14,11 @@ router.use('/:id/messages', messagesRouter)
 router.get('/:id/messages/new', async (request, response) => {
     const chatId = parseInt(request.params.id);
     // Hent lastId fra URL'en (f.eks. ?lastId=10)
-    const lastMessageId = parseInt(request.query.lastId) || 0; 
+    const lastMessageId = parseInt(request.query.lastId) || 0 
     
     // Simpel adgangstjek
     if (!request.session.isLoggedIn) {
-        return response.status(401).json({ error: "Uautoriseret" });
+        return response.status(401).json({ error: "Uautoriseret" })
     }
 
     try {
@@ -26,11 +26,11 @@ router.get('/:id/messages/new', async (request, response) => {
         const allUsers = await getUsers(); // Antager denne er importeret
 
         // Filtrer beskeder: Kun dem med ID større end lastMessageId
-        const newMessages = allMessages.filter(msg => msg.id > lastMessageId);
+        const newMessages = allMessages.filter(msg => msg.id > lastMessageId)
 
         // Berig beskeder med brugernavnet
         const messagesWithUsers = newMessages.map(msg => {
-            const user = allUsers.find(u => u.id === msg.user);
+            const user = allUsers.find(u => u.id === msg.user)
             return {
                 id: msg.id,
                 messageContent: msg.messageContent,
@@ -42,10 +42,10 @@ router.get('/:id/messages/new', async (request, response) => {
         });
 
         // Returner de nye data som JSON
-        response.json({ messages: messagesWithUsers });
+        response.json({ messages: messagesWithUsers })
     } catch (error) {
-        console.error('Fejl ved hentning af nye beskeder:', error);
-        response.status(500).json({ error: 'Kunne ikke hente nye beskeder' });
+        console.error('Fejl ved hentning af nye beskeder:', error)
+        response.status(500).json({ error: 'Kunne ikke hente nye beskeder' })
     }
 });
 
@@ -70,14 +70,14 @@ router.post('/create', async (request, response) => {
         return
     }
 
-    const chatNavn = request.body.chatName;
+    const chatNavn = request.body.chatName
     const currentUserId = request.session.userId
 
     if (!currentUserId) {
         return response.redirect('/');
     }
 
-    await createChat(chatNavn, currentUserId);
+    await createChat(chatNavn, currentUserId)
     request.session.save(() => {
         response.redirect('/chats')
     })
@@ -97,7 +97,7 @@ router.get('/:id', async (request, response) => {
     const messages = await getMessagesByChat(id)
     const users = await getUsers()
     chat.messages = messages.map(msg => {
-        const userObj = users.find(u => u.id == msg.user);
+        const userObj = users.find(u => u.id == msg.user)
         return {
             id: msg.id,
             userId: msg.user,
@@ -121,7 +121,7 @@ router.patch('/:id', async (request, response) => {
     const id = parseInt(request.params.id)
     const newName = request.body.name
 
-    await updateChat(id, newName);
+    await updateChat(id, newName)
 
     request.session.save(() => {
         response.redirect('/chats')
@@ -133,7 +133,7 @@ router.delete('/:id', async (request, response) => {
         return
     }
     const id = parseInt(request.params.id)
-    const success = await deleteChat(id);
+    const success = await deleteChat(id)
 
     if (success) {
         request.session.save(() => {

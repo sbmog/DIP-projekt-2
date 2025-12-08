@@ -21,7 +21,7 @@
     "password": "pass3",
     "oprettelsesDate": "2025-11-24T08:00:00.000Z",
     "userLvl": 3,
-    "isOnline": true
+    "isOnline": false
   },
   {
     "id": 4,
@@ -36,7 +36,7 @@
     "userName": "test2",
     "password": "222",
     "oprettelsesDate": "2025-11-28T13:30:00.411Z",
-    "userLvl": 1,
+    "userLvl": 2,
     "isOnline": false
   }
 ]

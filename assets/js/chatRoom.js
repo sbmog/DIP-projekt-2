@@ -2,18 +2,18 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Vælg knappen via dens klasse
-    const deleteButton = document.querySelector('.delete-chat-btn');
+    const deleteButton = document.querySelector('.delete-chat-btn')
 
     if (deleteButton) {
         deleteButton.addEventListener('click', async (event) => {
             // Forhindrer browseren i at navigere væk (href="#")
-            event.preventDefault(); 
+            event.preventDefault()
             
             // Henter chat ID fra data-chat-id attributten på knappen
             const chatId = event.target.dataset.chatId;
 
             if (!confirm(`Er du sikker på, at du vil slette chat ID: ${chatId}?`)) {
-                return;
+                return
             }
 
             // Send DELETE request direkte til serveren
@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.status === 204) {
                 // Sletning lykkedes. Navigerer til chat-oversigten.
-                window.location.href = '/chats'; 
+                window.location.href = '/chats'
             } else {
-                alert('Sletning mislykkedes. Tjek dine rettigheder og prøv igen.');
+                alert('Sletning mislykkedes. Tjek dine rettigheder og prøv igen.')
             }
         });
     }
@@ -33,23 +33,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Funktion til at skifte mellem visning og redigering
 function toggleEdit(msgId) {
-    const textElement = document.getElementById(`text-${msgId}`);
-    const formElement = document.getElementById(`edit-form-${msgId}`);
-    const menuElement = document.querySelector(`#msg-${msgId} .menu-container`);
+    const textElement = document.getElementById(`text-${msgId}`)
+    const formElement = document.getElementById(`edit-form-${msgId}`)
+    const menuElement = document.querySelector(`#msg-${msgId} .menu-container`)
 
     if (formElement.style.display === 'none') {
         // VIS REDIGERING
-        textElement.style.display = 'none';
-        formElement.style.display = 'block';
-        if(menuElement) menuElement.style.display = 'none';
+        textElement.style.display = 'none'
+        formElement.style.display = 'block'
+        if(menuElement) menuElement.style.display = 'none'
         
         // Sæt fokus i feltet
-        const inputField = formElement.querySelector('input');
-        if (inputField) inputField.focus();
+        const inputField = formElement.querySelector('input')
+        if (inputField) inputField.focus()
     } else {
         // ANNULLER REDIGERING
-        textElement.style.display = 'inline';
-        formElement.style.display = 'none';
-        if(menuElement) menuElement.style.display = 'block';
+        textElement.style.display = 'inline'
+        formElement.style.display = 'none'
+        if(menuElement) menuElement.style.display = 'block'
     }
 }

@@ -7,21 +7,21 @@ const router = express.Router({ mergeParams: true })
 
 // POST / (som oversættes til POST /chats/:id/messages)
 router.post('/', async (request, response) => {
-    const chatId = parseInt(request.params.id);
-    const messageContent = request.body.content;
+    const chatId = parseInt(request.params.id)
+    const messageContent = request.body.content
 
     // Hent bruger-ID fra sessionen
-    const userId = request.session.userId;
+    const userId = request.session.userId
 
     try {
-        await createMessage(messageContent, userId, chatId); //
+        await createMessage(messageContent, userId, chatId)
         // Omdiriger tilbage til chatrummet
         request.session.save(() => {
-            response.redirect(`/chats/${chatId}`);
+            response.redirect(`/chats/${chatId}`)
         })
     } catch (error) {
-        console.error("Fejl ved oprettelse af besked:", error);
-        response.status(500).send("Fejl ved oprettelse af besked");
+        console.error("Fejl ved oprettelse af besked:", error)
+        response.status(500).send("Fejl ved oprettelse af besked")
     }
 });
 
@@ -31,22 +31,22 @@ router.patch('/:messageId', async (request, response) => {
         return
     }
 
-    const chatId = parseInt(request.params.id);
-    const messageId = parseInt(request.params.messageId);
+    const chatId = parseInt(request.params.id)
+    const messageId = parseInt(request.params.messageId)
     const newContent = request.body.content;
 
     try {
-        const updatedMsg = await updateMessage(messageId, newContent);
+        const updatedMsg = await updateMessage(messageId, newContent)
         if (updatedMsg) {
             request.session.save(() => {
-                response.redirect(`/chats/${chatId}`);
+                response.redirect(`/chats/${chatId}`)
             })
         } else {
-            response.status(404).send("Besked ikke fundet");
+            response.status(404).send("Besked ikke fundet")
         }
     } catch (error) {
-        console.error("Fejl ved opdatering af besked:", error);
-        response.status(500).send("Fejl ved opdatering af besked");
+        console.error("Fejl ved opdatering af besked:", error)
+        response.status(500).send("Fejl ved opdatering af besked")
     }
 });
 
@@ -56,8 +56,8 @@ router.delete('/:messageId', async (request, response) => {
         return
     }
 
-    const chatId = parseInt(request.params.id);
-    const messageId = parseInt(request.params.messageId);
+    const chatId = parseInt(request.params.id)
+    const messageId = parseInt(request.params.messageId)
 
     try {
         const success = await deleteMessage(messageId)

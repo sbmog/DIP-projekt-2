@@ -26,7 +26,7 @@ router.post('/', async (request, response) => {
         request.session.userId = user.id
         request.session.userLvl = user.userLvl
         request.session.userName = user.userName
-        await updateUserStatus(user.id, true);
+        await updateUserStatus(user.id, true)
         request.session.save(() => {
             response.redirect('/chats')
         })
@@ -48,7 +48,7 @@ async function checkUserCredientials(username, password) {
 }
 
 function checkAccess(request, response, next) {
-    console.log("Forsøg på adgang til siden: " + request.url);
+    console.log("Forsøg på adgang til siden: " + request.url)
     // forsøg på at se /chats siden UDEN at være logget ind
     if (request.url === '/chats' && !request.session.isLoggedIn) {
         response.redirect('/')

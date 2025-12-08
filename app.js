@@ -8,10 +8,6 @@ import loginRouter from './routes/login.js'
 import chatsRouter from './routes/chats.js'
 import usersRouter from './routes/users.js'
 
-import chat from './models/chat.js'
-import message from './models/message.js'
-import user from './models/user.js'
-
 
 const app = express()
 const port = 8090
@@ -23,12 +19,12 @@ app.set('view engine', 'pug')
 app.use(express.static('assets'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-const cssFolder = './assets/css';
+const cssFolder = './assets/css'
 try {
-    const files = fs.readdirSync(cssFolder);
-    app.locals.cssFiles = files.filter(file => file.endsWith('.css'));
+    const files = fs.readdirSync(cssFolder)
+    app.locals.cssFiles = files.filter(file => file.endsWith('.css'))
 } catch (err) {
-    app.locals.cssFiles = [];
+    app.locals.cssFiles = []
 }
 
 app.use(methodOverride('_method'))
@@ -40,12 +36,12 @@ app.use(session({
 }))
 
 app.use((request, response, next) => {
-    response.locals.isLoggedIn = request.session.isLoggedIn;
-    response.locals.userId = request.session.userId;
-    response.locals.userName = request.session.userName;
-    response.locals.userLvl = request.session.userLvl;
-    next();
-});
+    response.locals.isLoggedIn = request.session.isLoggedIn
+    response.locals.userId = request.session.userId
+    response.locals.userName = request.session.userName
+    response.locals.userLvl = request.session.userLvl
+    next()
+})
 
 app.use('/login', loginRouter)
 app.use('/chats', chatsRouter)
@@ -58,11 +54,11 @@ app.get('/', (request, response) => {
 })
 
 app.get('/logout', async(request, response) => {
-    const userId = request.session.userId;
+    const userId = request.session.userId
 
     if (userId) {
         // Bemærk: Denne funktion er nu async
-        await updateUserStatus(userId, false); 
+        await updateUserStatus(userId, false) 
     }
     request.session.destroy()
     response.redirect('/')
