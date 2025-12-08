@@ -1,5 +1,5 @@
 import express from 'express'
-import { createUser, getUsers } from '../data/userData.js'
+import { createUser, getUsers, updateUserStatus} from '../data/userData.js'
 
 const router = express.Router()
 
@@ -46,7 +46,8 @@ router.get('/', async (request, response) => {
         id: u.id,
         userName: u.userName,
         oprettelsesDato: u.oprettelsesDate,
-        userLvl: u.userLvl
+        userLvl: u.userLvl,
+        isOnline: u.isOnline
     }))
 
     response.render('userList', { users: safeUsers, title: 'Brugeradministration' })

@@ -43,6 +43,21 @@ export async function getUserById(id) {
     return user ? user : null;
 }
 
+export async function updateUserStatus(userId, isOnline) {
+    const users = await getUsers();
+    // Sikrer at vi arbejder med et tal
+    const id = parseInt(userId); 
+    const userIndex = users.findIndex(u => u.id === id);
+
+    if (userIndex !== -1) {
+        // Sæt isOnline-status og gem ændringerne
+        users[userIndex].isOnline = isOnline;
+        await saveUsers(users);
+        return true;
+    }
+    return false;
+}
+
 // Opret ny bruger
 export async function createUser(userName, password, userLvl) {
     const users = await getUsers();

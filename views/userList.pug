@@ -18,6 +18,7 @@ body#userAdminPage
                 th Brugernavn
                 th Niveau
                 th Oprettet dato
+                th Er Online
         tbody
             if users.length > 0
                 each user in users
@@ -26,6 +27,7 @@ body#userAdminPage
                         td #{user.userName}
                         td #{user.userLvl}
                         td #{new Date(user.oprettelsesDato).toLocaleDateString()}
+                        td #{user.isOnline}
             else
                 tr
                     td(colspan="4") Ingen brugere fundet.
