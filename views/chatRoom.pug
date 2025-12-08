@@ -41,3 +41,5 @@ body#chatpage
       form.chat-form(action=`/chats/${chat.id}/messages` method="POST")
         input(type="text" name="content" placeholder="Skriv en besked..." required autocomplete="off")
         button(type="submit") Send
+
+script(src='/js/chatPolling.js')

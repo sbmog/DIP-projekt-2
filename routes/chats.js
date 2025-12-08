@@ -8,8 +8,46 @@ import messagesRouter from './messages.js'
 
 const router = express.Router()
 
-// Nu håndterer messagesRouter alle requests til /chats/:id/messages
 router.use('/:id/messages', messagesRouter)
+
+// JSON API endpoint til at hente beskeder, der er nyere end en given ID
+router.get('/:id/messages/new', async (request, response) => {
+    const chatId = parseInt(request.params.id);
+    // Hent lastId fra URL'en (f.eks. ?lastId=10)
+    const lastMessageId = parseInt(request.query.lastId) || 0; 
+    
+    // Simpel adgangstjek
+    if (!request.session.isLoggedIn) {
+        return response.status(401).json({ error: "Uautoriseret" });
+    }
+
+    try {
+        const allMessages = await getMessagesByChat(chatId);
+        const allUsers = await getUsers(); // Antager denne er importeret
+
+        // Filtrer beskeder: Kun dem med ID større end lastMessageId
+        const newMessages = allMessages.filter(msg => msg.id > lastMessageId);
+
+        // Berig beskeder med brugernavnet
+        const messagesWithUsers = newMessages.map(msg => {
+            const user = allUsers.find(u => u.id === msg.user);
+            return {
+                id: msg.id,
+                messageContent: msg.messageContent,
+                oprettelsesDato: msg.oprettelsesDato,
+                user: msg.user,
+                chat: msg.chat,
+                userName: user ? user.userName : 'Ukendt Bruger'
+            };
+        });
+
+        // Returner de nye data som JSON
+        response.json({ messages: messagesWithUsers });
+    } catch (error) {
+        console.error('Fejl ved hentning af nye beskeder:', error);
+        response.status(500).json({ error: 'Kunne ikke hente nye beskeder' });
+    }
+});
 
 // OVERSIGT: Vis listen af chats
 router.get('/', async (request, response) => {
