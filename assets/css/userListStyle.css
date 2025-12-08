@@ -1,0 +1,46 @@
+
+.admin-container {
+    width: 100%;
+    max-width: 800px; 
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+}
+
+
+.admin-header h1 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+}
+
+.user-table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 0;
+    background-color: white;
+}
+
+.user-table th, 
+.user-table td {
+    border-bottom: 1px solid #eee;
+    padding: 15px;
+    text-align: left;
+}
+
+.user-table th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+}
+
+.user-table tbody tr:hover {
+    background-color: #e2f4ff;
+}
