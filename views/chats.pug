@@ -8,6 +8,9 @@ body#chatpage
     if userLvl >=2
       a.create-btn(href="./chats/create") Opret ny chat
 
+    if userLvl >=2
+      a.create-btn(href="./chats/") Se dine beskeder
+
     if userLvl == 3
       a.create-btn(href="/users") Administrer brugere
     
@@ -34,6 +37,6 @@ script.
       if (response.ok) {
         window.location.reload();
       } else {
-        alert('Der skete en fejl. Kunne ikke slette chatten.');
+        alert('Der skete en fejl. Kunne ikke slette chatten.')
       }
     }

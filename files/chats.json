@@ -40,5 +40,12 @@
     "oprettelsesDato": "2025-11-28T08:14:37.527Z",
     "user": 123,
     "messages": []
+  },
+  {
+    "id": 8,
+    "name": "Tester chat",
+    "oprettelsesDato": "2025-12-08T09:46:14.224Z",
+    "user": 2,
+    "messages": []
   }
 ]
