@@ -61,9 +61,10 @@ router.get('/:id', async (request, response) => {
     chat.messages = messages.map(msg => {
         const userObj = users.find(u => u.id == msg.user);
         return {
+            id: msg.id,
+            userId: msg.user,
             content: msg.messageContent,
             userName: userObj ? userObj.userName : 'Bruger ' + msg.user,
-            userId: msg.user,
             oprettelsesDato: msg.oprettelsesDato
         }
     })

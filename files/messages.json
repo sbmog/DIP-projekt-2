@@ -82,5 +82,33 @@
     "oprettelsesDato": "2025-11-28T09:17:52.043Z",
     "user": 2,
     "chat": 5
+  },
+  {
+    "id": 20,
+    "messageContent": "Haloo",
+    "oprettelsesDato": "2025-12-08T08:00:31.094Z",
+    "user": 3,
+    "chat": 2
+  },
+  {
+    "id": 21,
+    "messageContent": "hallo",
+    "oprettelsesDato": "2025-12-08T08:01:35.349Z",
+    "user": 3,
+    "chat": 2
+  },
+  {
+    "id": 22,
+    "messageContent": "HALLO",
+    "oprettelsesDato": "2025-12-08T08:07:07.448Z",
+    "user": 3,
+    "chat": 2
+  },
+  {
+    "id": 23,
+    "messageContent": "hvad fuck",
+    "oprettelsesDato": "2025-12-08T08:10:03.238Z",
+    "user": 3,
+    "chat": 2
   }
 ]
