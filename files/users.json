@@ -4,27 +4,47 @@
     "userName": "level1",
     "password": "pass1",
     "oprettelsesDate": "2025-11-24T08:00:00.000Z",
-    "userLvl": 1
+    "userLvl": 1,
+    "isOnline": false
   },
   {
     "id": 2,
     "userName": "level2",
     "password": "pass2",
     "oprettelsesDate": "2025-11-24T08:00:00.000Z",
-    "userLvl": 2
+    "userLvl": 2,
+    "isOnline": false
   },
   {
     "id": 3,
     "userName": "admin",
     "password": "pass3",
     "oprettelsesDate": "2025-11-24T08:00:00.000Z",
-    "userLvl": 3
+    "userLvl": 3,
+    "isOnline": true
   },
   {
     "id": 4,
     "userName": "Jeppe K",
     "password": "password123",
     "oprettelsesDate": "2025-11-24T08:00:00.000Z",
-    "userLvl": 1
+    "userLvl": 1,
+    "isOnline": false
+  },
+  {
+    "id": 5,
+    "userName": "test1",
+    "password": "111",
+    "oprettelsesDate": "2025-11-28T10:33:44.847Z",
+    "userLvl": 1,
+    "isOnline": false
+  },
+  {
+    "id": 6,
+    "userName": "test2",
+    "password": "222",
+    "oprettelsesDate": "2025-11-28T13:30:00.411Z",
+    "userLvl": 1,
+    "isOnline": false
   }
 ]

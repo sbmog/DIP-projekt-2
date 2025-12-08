@@ -1,5 +1,5 @@
 import express from 'express'
-import { getUserByUsername } from '../data/userData.js'
+import { getUserByUsername, updateUserStatus } from '../data/userData.js'
 
 const router = express.Router()
 
@@ -26,6 +26,7 @@ router.post('/', async (request, response) => {
         request.session.userId = user.id
         request.session.userLvl = user.userLvl
         request.session.userName = user.userName
+        await updateUserStatus(user.id, true);
         request.session.save(() => {
             response.redirect('/chats')
         })

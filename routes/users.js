@@ -46,7 +46,8 @@ router.get('/', async (request, response) => {
         id: u.id,
         userName: u.userName,
         oprettelsesDato: u.oprettelsesDate,
-        userLvl: u.userLvl
+        userLvl: u.userLvl,
+        isOnline: u.isOnline
     }))
 
     response.render('userList', { users: safeUsers, title: 'Brugeradministration' })

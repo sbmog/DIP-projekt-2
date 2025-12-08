@@ -5,6 +5,7 @@ export default class user {
         this.password = password
         this.oprettelsesDate = new Date().toISOString()
         this.userLvl = userLvl
+        this.isOnline = false
     }
 
     getPublivDate() {

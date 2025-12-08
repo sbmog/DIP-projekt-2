@@ -2,6 +2,7 @@ import express from 'express'
 import session from 'express-session'
 import methodOverride from 'method-override'
 import fs from 'fs'
+import { updateUserStatus } from './data/userData.js'
 
 import loginRouter from './routes/login.js'
 import chatsRouter from './routes/chats.js'
@@ -56,7 +57,13 @@ app.get('/', (request, response) => {
     response.render('frontpage', { knownUser: request.session.isLoggedIn })
 })
 
-app.get('/logout', (request, response) => {
+app.get('/logout', async(request, response) => {
+    const userId = request.session.userId;
+
+    if (userId) {
+        // Bemærk: Denne funktion er nu async
+        await updateUserStatus(userId, false); 
+    }
     request.session.destroy()
     response.redirect('/')
 })
