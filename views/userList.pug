@@ -18,8 +18,8 @@ body#userAdminPage
                 th Brugernavn
                 th Niveau
                 th Oprettet dato
-                th 
-                th Er Online
+                th Online
+                th
         tbody
             if users.length > 0
                 each user in users
@@ -28,10 +28,9 @@ body#userAdminPage
                         td #{user.userName}
                         td #{user.userLvl}
                         td #{new Date(user.oprettelsesDato).toLocaleDateString()}
+                        td #{user.isOnline}                       
                         td
-                            a.delete-chat-btn(href="javascript:void(0)", onclick=`deleteUser(${user.id})`) Slet
-            else 
-                        td #{user.isOnline}
+                            a.delete-chat-btn(href="javascript:void(0)", onclick=`deleteUser(${user.id})`) Slet 
             else
                 tr
                     td(colspan="4") Ingen brugere fundet.

@@ -32,14 +32,6 @@
     "isOnline": false
   },
   {
-    "id": 5,
-    "userName": "test1",
-    "password": "111",
-    "oprettelsesDate": "2025-11-28T10:33:44.847Z",
-    "userLvl": 1,
-    "isOnline": false
-  },
-  {
     "id": 6,
     "userName": "test2",
     "password": "222",
