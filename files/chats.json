@@ -1,51 +1,44 @@
 [
   {
-    "id": 2,
+    "id": 1,
     "name": "Julefrokost",
     "oprettelsesDato": "2025-12-01T10:00:00.000Z",
-    "user": 123,
+    "user": 2,
+    "messages": []
+  },
+  {
+    "id": 2,
+    "name": "Sommerfest",
+    "oprettelsesDato": "2026-06-20T14:00:00.000Z",
+    "user": 2,
     "messages": []
   },
   {
     "id": 3,
-    "name": "Sommerfest",
-    "oprettelsesDato": "2026-06-20T14:00:00.000Z",
-    "user": 456,
+    "name": "Nytårsfest",
+    "oprettelsesDato": "2025-11-24T08:44:07.160Z",
+    "user": 2,
     "messages": []
   },
   {
     "id": 4,
-    "name": "Nytårsfest",
-    "oprettelsesDato": "2025-11-24T08:44:07.160Z",
-    "user": 123,
+    "name": "Dimissionsfest fest 2027",
+    "oprettelsesDato": "2025-11-24T10:28:52.949Z",
+    "user": 4,
     "messages": []
   },
   {
     "id": 5,
-    "name": "Dimissionsfest fest 2027",
-    "oprettelsesDato": "2025-11-24T10:28:52.949Z",
-    "user": 123,
+    "name": "Sommerfest 2",
+    "oprettelsesDato": "2025-11-24T10:41:53.365Z",
+    "user": 4,
     "messages": []
   },
   {
     "id": 6,
-    "name": "Sommerfest 2",
-    "oprettelsesDato": "2025-11-24T10:41:53.365Z",
-    "user": 123,
-    "messages": []
-  },
-  {
-    "id": 7,
     "name": "Halloween fest 🕷️",
     "oprettelsesDato": "2025-11-28T08:14:37.527Z",
-    "user": 123,
-    "messages": []
-  },
-  {
-    "id": 8,
-    "name": "testLevel",
-    "oprettelsesDato": "2025-12-08T09:31:29.777Z",
-    "user": 2,
+    "user": 4,
     "messages": []
   }
 ]

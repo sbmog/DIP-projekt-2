@@ -116,6 +116,7 @@ async function authorizeMessageAccess(request, response) {
     const isOwner = message.user === currentUserId
     if (isOwner) { 
         request.chat = message.chat
+        request.chat = message.chat
         return true
     } else {
         response.status(403).send('Adgang nægtet. Kun ejeren kan slette denne besked.')

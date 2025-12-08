@@ -1,93 +1,58 @@
 [
   {
-    "id": 4,
+    "id": 1,
     "messageContent": "Velkommen til Julefrokost-chatten! Datoen er den 1. december.",
     "oprettelsesDato": "2025-12-01T08:00:00.000Z",
-    "user": 123,
-    "chat": 2
+    "user": 2,
+    "chat": 1
   },
   {
-    "id": 6,
-    "messageContent": "Hej",
-    "oprettelsesDato": "2025-11-24T10:04:34.575Z",
-    "user": 123,
-    "chat": 4
-  },
-  {
-    "id": 10,
-    "messageContent": "Hej",
-    "oprettelsesDato": "2025-11-24T10:28:55.171Z",
-    "user": 3,
-    "chat": 3
-  },
-  {
-    "id": 12,
+    "id": 2,
     "messageContent": "Vi jo færdig i 2027 så vi skal da holde en fest",
     "oprettelsesDato": "2025-11-24T10:37:57.156Z",
     "user": 3,
-    "chat": 5
-  },
-  {
-    "id": 13,
-    "messageContent": "Så er vi klaaaar??!!🎉🎉🎉🎉",
-    "oprettelsesDato": "2025-11-24T10:38:15.284Z",
-    "user": 3,
-    "chat": 5
-  },
-  {
-    "id": 15,
-    "messageContent": "Jeg er admin",
-    "oprettelsesDato": "2025-11-24T10:42:00.392Z",
-    "user": 3,
-    "chat": 6
-  },
-  {
-    "id": 16,
-    "messageContent": "Klar til nytår 2025",
-    "oprettelsesDato": "2025-11-28T08:13:20.877Z",
-    "user": 1,
     "chat": 4
   },
   {
-    "id": 17,
-    "messageContent": "Halloween 2026 🕷️🕷️🕷️🕷️",
-    "oprettelsesDato": "2025-11-28T08:14:53.805Z",
-    "user": 1,
-    "chat": 7
+    "id": 3,
+    "messageContent": "Så er vi klaaaar??!!🎉🎉🎉🎉",
+    "oprettelsesDato": "2025-11-24T10:38:15.284Z",
+    "user": 3,
+    "chat": 4
   },
   {
-    "id": 18,
-    "messageContent": "Hej",
-    "oprettelsesDato": "2025-11-28T08:17:13.289Z",
-    "user": 2,
-    "chat": 3
-  },
-  {
-    "id": 19,
-    "messageContent": "fwe",
-    "oprettelsesDato": "2025-11-28T09:17:52.043Z",
-    "user": 2,
+    "id": 4,
+    "messageContent": "Lidt tidligt ude",
+    "oprettelsesDato": "2025-11-24T10:42:00.392Z",
+    "user": 3,
     "chat": 5
   },
   {
-    "id": 20,
-    "messageContent": "Nej det glæder vi os til",
-    "oprettelsesDato": "2025-12-08T09:13:34.956Z",
-    "user": 3,
+    "id": 5,
+    "messageContent": "Klar til nytår 2025",
+    "oprettelsesDato": "2025-11-28T08:13:20.877Z",
+    "user": 4,
+    "chat": 3
+  },
+  {
+    "id": 6,
+    "messageContent": "Halloween 2026 🕷️🕷️🕷️🕷️",
+    "oprettelsesDato": "2025-11-28T08:14:53.805Z",
+    "user": 4,
+    "chat": 6
+  },
+  {
+    "id": 7,
+    "messageContent": "Omg fedt!",
+    "oprettelsesDato": "2025-12-08T09:10:38.795Z",
+    "user": 4,
     "chat": 2
   },
   {
-    "id": 21,
-    "messageContent": "Hej",
-    "oprettelsesDato": "2025-12-08T09:19:13.626Z",
-    "user": 3,
-    "chat": 2
-  },
-  {
-    "id": 21,
-    "messageContent": "hej",
-    "oprettelsesDato": "2025-12-08T09:40:16.019Z",
+    "id": 8,
+    "messageContent": "Yes!!!",
+    "oprettelsesDato": "2025-12-08T10:19:37.150Z",
     "user": 2,
-    "chat": 8
+    "chat": 4
   }
 ]

@@ -80,4 +80,4 @@
 
     // Initial scroll til bunden, når siden indlæses første gang
     messagesContainer.scrollTop = messagesContainer.scrollHeight
-})();
+})()
