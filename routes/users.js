@@ -1,5 +1,5 @@
 import express from 'express'
-import { createUser, getUsers, updateUserStatus} from '../data/userData.js'
+import { createUser, getUsers, deleteUser } from '../data/userData.js'
 
 const router = express.Router()
 

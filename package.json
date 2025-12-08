@@ -30,7 +30,9 @@
   "dependencies": {
     "express": "^5.1.0",
     "express-session": "^1.18.2",
+    "method": "^2.0.0",
     "method-override": "^3.0.0",
+    "override": "^0.0.1",
     "pug": "^3.0.3"
   }
 }

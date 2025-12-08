@@ -119,3 +119,100 @@ body#chatpage {
   background-color: #0056b3;
 }
 
+
+/* Tilpasning af Taleboblen --- */
+/* Vi bruger flexbox for at placere tekst til venstre og menu til højre */
+.message-bubble {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative; /* Nødvendig for at menuen hænger fast her */
+  padding-right: 5px;
+}
+
+/* Sikrer at selve beskeden tager pladsen og skubber menuen ud til siden */
+.message-content {
+  flex: 1; 
+  margin-right: 15px; /* Afstand hen til de 3 prikker */
+  word-break: break-word;
+}
+
+
+/* De 3 Prikker (Menu-knappen) --- */
+.menu-container {
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  height: 24px;
+  width: 20px;
+  align-self: flex-end;
+  margin-bottom: 5px;
+}
+
+.dots {
+  font-size: 18px;/* Størrelse på prikkerne */
+  color: #aaa;          
+  line-height: 8px;
+  font-weight: bold;
+  user-select: none;/* Gør at man ikke kan markere prikkerne som tekst */
+  transition: color 0.2s;
+  display: block;
+  text-align: center;
+}
+
+/* Farv prikkerne mørkere når man holder musen over */
+.menu-container:hover .dots {
+  color: #333;
+}
+
+
+/* Dropdown Menuen (Boksen) --- */
+.dropdown-menu {
+  display: none;             
+  position: absolute; /* Flyder ovenpå indholdet */
+  right: 0;               
+  top: 100%; /* Starter lige under prikkerne */
+  background-color: white;
+  min-width: 120px;      
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 100;             
+  padding: 5px 0;            
+  overflow: hidden;
+}
+
+/* Når man holder musen over containeren, vis dropdown-menuen */
+.menu-container:hover .dropdown-menu {
+  display: block;
+}
+
+
+/* Knapperne INDE i menuen (Slet & Ret) --- */
+.delete-msg-btn, 
+.edit-msg-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  transition: background-color 0.1s;
+}
+
+.delete-msg-btn {
+  color: #dc3545;
+}
+.edit-msg-btn {
+  color: #007bff;
+}
+
+/* Hover effekt på menupunkterne */
+.delete-msg-btn:hover, 
+.edit-msg-btn:hover {
+  background-color: #f8f9fa;
+}

@@ -3,24 +3,40 @@ include includes/header
 body#chatpage
   // Log ud
   if isLoggedIn
-      a.logoutbtn(href="/logout") Log ud
+    a.logoutbtn(href="/logout") Log ud
 
   div.chat-container
     div.chat-header
       a.back-btn(href="/chats") &larr; Tilbage
       h1 #{chat.name}
+      // Slet chat knap
       if userLvl === 3 || (userLvl >= 2 && chat.user === currentUser)
         a.delete-chat-btn(href="#", data-chat-id=`${chat.id}`) Slet chat
 
     div.messages
+      // TJEK BESKEDER START
       if chat.messages && chat.messages.length > 0
         ul
           each msg in chat.messages
             li.message-bubble(data-message-id=msg.id)
-              strong.user-name #{msg.userName || 'Bruger'}:
-              span.message-text #{msg.messageContent || msg.content}
+              div.message-content
+                strong.user-name #{msg.userName || 'Bruger'}:
+                span.message-text #{msg.messageContent || msg.content}
+              
+              // MENU START (Kun for besked-ejer)
+              if msg.userId == currentUser
+                div.menu-container
+                  span.dots &#8942;
+                  div.dropdown-menu
+                    // Slet knap
+                    form(action=`/chats/${chat.id}/messages/${msg.id}?_method=DELETE` method="POST")
+                      button.delete-msg-btn(type="submit") Slet
+                    // Ret knap (Link for nu)
+                    a.edit-msg-btn(href="#") Ret
       else
         p.no-messages Ingen beskeder endnu. Vær den første til at skrive!
+
+    // Input felt til nye beskeder
     if userLvl >= 2
       form.chat-form(action=`/chats/${chat.id}/messages` method="POST")
         input(type="text" name="content" placeholder="Skriv en besked..." required autocomplete="off")
