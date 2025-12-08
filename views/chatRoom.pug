@@ -18,7 +18,7 @@ body#chatpage
       if chat.messages && chat.messages.length > 0
         ul
           each msg in chat.messages
-            li.message-bubble
+            li.message-bubble(data-message-id=msg.id)
               div.message-content
                 strong.user-name #{msg.userName || 'Bruger'}:
                 span.message-text #{msg.messageContent || msg.content}
