@@ -11,7 +11,7 @@ export async function getUsers() {
     } catch (error) {
         // Opretter en initial liste, hvis filen ikke findes
         if (error.code === 'ENOENT') {
-             // Opret testbrugere for niveauer 1, 2 og 3
+            // Opret testbrugere for niveauer 1, 2 og 3
             const initialUsers = [
                 new User(1, 'level1_user', 'pass1', 1),
                 new User(2, 'level2_user', 'pass2', 2),
@@ -75,4 +75,21 @@ export async function createUser(userName, password, userLvl) {
 
     await saveUsers(users);
     return user;
+}
+
+//Slet bruger
+export async function deleteUser(id) {
+    const users = await getUsers()
+    const initialLenght = users.length
+    const userID = parseInt(id)
+
+    //Liste uden bruger der skal slettes
+    const updatedUsers = users.filter(u => u.id !== userID)
+
+    if(updatedUsers.length===initialLenght)
+        return false
+
+    //Gem den nye liste(uden slettet) som default
+    await saveUsers(updatedUsers)
+    return true
 }
