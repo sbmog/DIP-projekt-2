@@ -3,14 +3,14 @@
     "id": 4,
     "messageContent": "Velkommen til Julefrokost-chatten! Datoen er den 1. december.",
     "oprettelsesDato": "2025-12-01T08:00:00.000Z",
-    "user": 123,
+    "user": 2,
     "chat": 2
   },
   {
     "id": 6,
     "messageContent": "Hej",
     "oprettelsesDato": "2025-11-24T10:04:34.575Z",
-    "user": 123,
+    "user": 2,
     "chat": 4
   },
   {
@@ -45,14 +45,14 @@
     "id": 16,
     "messageContent": "Klar til nytår 2025",
     "oprettelsesDato": "2025-11-28T08:13:20.877Z",
-    "user": 1,
+    "user": 4,
     "chat": 4
   },
   {
     "id": 17,
     "messageContent": "Halloween 2026 🕷️🕷️🕷️🕷️",
     "oprettelsesDato": "2025-11-28T08:14:53.805Z",
-    "user": 1,
+    "user": 4,
     "chat": 7
   },
   {
@@ -73,7 +73,7 @@
     "id": 20,
     "messageContent": "Omg fedt!",
     "oprettelsesDato": "2025-12-08T09:10:38.795Z",
-    "user": 3,
+    "user": 4,
     "chat": 2
   },
   {

@@ -6,14 +6,6 @@ const router = express.Router()
 // MiddleWear
 router.use(checkAccess)
 
-// Endpoints
-
-/*
-router.get('/chats', (request,response)=>{
-    response.render('chats', {knownUser: request.session.isLoggedIn})
-})
-    */
-
 // HTTP request
 router.post('/', async (request, response) => {
     const username = request.body.username
@@ -36,7 +28,7 @@ router.post('/', async (request, response) => {
 })
 
 
-// Hjælpe function (OPDATERET til at returnere brugerobjektet)
+// Hjælpe function (returnere brugerobjektet)
 async function checkUserCredientials(username, password) {
     const user = await getUserByUsername(username) //
 
