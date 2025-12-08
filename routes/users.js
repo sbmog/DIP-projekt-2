@@ -53,21 +53,6 @@ router.get('/', async (request, response) => {
     response.render('userList', { users: safeUsers, title: 'Brugeradministration' })
 })
 
-router.delete('/:id',async(request, response)=>{
-    if (!authorizeAdmin(request, response)) return
-
-    const id = parseInt(request.params.id)
-    const succes = await deleteUser(id)
-
-    if (succes) {
-        request.session.save(()=>{
-            response.status(204).send()
-        })
-    }else{
-        response.status(404).send('Brugeren blev ikke fundet')
-    }
-})
-
 router.get('/:id', async (request, response) => {
     const id = parseInt(request.params.id)
     const users = await getUsers()
