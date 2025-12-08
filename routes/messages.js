@@ -1,9 +1,35 @@
 import express from 'express'
-import { createMessage, updateMessage, deleteMessage, getMessageById } from '../data/messageData.js'
+import { createMessage, updateMessage, deleteMessage, getMessageById, getMessagesByUser } from '../data/messageData.js'
+
+import { getChats } from '../data/chatData.js'
 
 // VIGTIGT: mergeParams: true gør, at vi kan få adgang til ':id' parameteren
 // fra den router, der monterer denne (i dette tilfælde routes/chats.js)
 const router = express.Router({ mergeParams: true })
+
+
+router.get('/my', async (request, response) => {
+    if (!request.session.isLoggedIn) {
+        return response.redirect('/')
+    }
+
+    const currentUserId = request.session.userId
+    const myMessages = await getMessagesByUser(currentUserId)
+    const chats = await getChats()
+    const enrichedMessages = myMessages.map(msg => {
+        const chatObj = chats.find(c => c.id === msg.chat)
+        return {
+            ...msg,
+            chatName: chatObj ? chatObj.name : 'Ukendt Chat'
+        }
+    })
+
+    response.render('messageList', { 
+        messages: enrichedMessages,
+        userLvl: request.session.userLvl
+    })
+})
+
 
 // POST / (som oversættes til POST /chats/:id/messages)
 router.post('/', async (request, response) => {
@@ -77,12 +103,9 @@ router.delete('/:messageId', async (request, response) => {
 })
 
 // Hjælpe function til tjekke ejerskab/admin
-// STORE ÆNDERINGER !!!!!
 async function authorizeMessageAccess(request, response) {
     const messageId = parseInt(request.params.messageId)
     const currentUserId = request.session.userId
-    // Vi behøver ikke userLvl længere, da kun ejer må slette
-
     const message = await getMessageById(messageId)
 
     if (!message) {
@@ -91,16 +114,13 @@ async function authorizeMessageAccess(request, response) {
     }
 
     const isOwner = message.user === currentUserId
-
-    // Tjekker KUN om man er ejer (fjerner isLevel3Admin tjekket)
     if (isOwner) { 
-        request.chat = message.chat // (Valgfrit: kan bruges hvis du skal vide hvilken chat det er)
+        request.chat = message.chat
         return true
     } else {
         response.status(403).send('Adgang nægtet. Kun ejeren kan slette denne besked.')
         return false
     }
 }
-
 
 export default router

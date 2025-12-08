@@ -1,0 +1,77 @@
+/* Styling til Message List (Kort-design) */
+body#messagesList .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.message-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsivt grid */
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.msg-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s;
+}
+
+.msg-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.msg-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 5px;
+}
+
+.chat-label {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.msg-body p {
+    font-size: 1.1rem;
+    color: #333;
+    font-style: italic;
+    margin: 10px 0 20px 0;
+}
+
+.msg-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.goto-btn {
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.delete-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.delete-icon-btn:hover {
+    transform: scale(1.2);
+}

@@ -7,7 +7,7 @@ import { updateUserStatus } from './data/userData.js'
 import loginRouter from './routes/login.js'
 import chatsRouter from './routes/chats.js'
 import usersRouter from './routes/users.js'
-
+import messagesRouter from './routes/messages.js'
 
 const app = express()
 const port = 8090
@@ -46,6 +46,7 @@ app.use((request, response, next) => {
 app.use('/login', loginRouter)
 app.use('/chats', chatsRouter)
 app.use('/users', usersRouter)
+app.use('/messages', messagesRouter)
 
 
 // Endpoints

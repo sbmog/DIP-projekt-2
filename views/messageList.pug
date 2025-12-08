@@ -1,4 +1,30 @@
 include includes/header
 
-body#messagesPage
-  h1 Chat oversigt
+body#messagesList
+  div.container
+    h1 Mine Sendte Beskeder
+    
+    div.top-bar
+        a.back-btn(href="/chats") &larr; Tilbage til oversigt
+
+    // Grid layout til beskederne (ikke en liste)
+    div.message-grid
+      if messages && messages.length > 0
+        each msg in messages
+          div.msg-card
+            div.msg-header
+              span.chat-label Chat: #{msg.chatName}
+              span.date-label #{new Date(msg.oprettelsesDato).toLocaleDateString()}
+            
+            div.msg-body
+              p "#{msg.messageContent}"
+            
+            div.msg-footer
+              // Direkte link til chatten
+              a.goto-btn(href=`/chats/${msg.chat}`) Gå til chat
+              
+              // Slet knap
+              form(action=`/chats/${msg.chat}/messages/${msg.id}?_method=DELETE` method="POST" onsubmit="return confirm('Vil du slette denne besked?');")
+                 button.delete-icon-btn(type="submit" title="Slet besked") 🗑️
+      else
+        p.empty-state Du har ikke sendt nogen beskeder endnu.

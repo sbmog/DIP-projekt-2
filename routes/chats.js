@@ -1,6 +1,6 @@
 import express from 'express'
-// 1. Importer funktionen til at hente data
-import { getChats, createChat, deleteChat, getChatsByUser } from '../data/chatData.js'
+// Importer funktionen til at hente data
+import { getChats, createChat, deleteChat} from '../data/chatData.js'
 import { getMessagesByChat } from '../data/messageData.js'
 import { getUsers } from '../data/userData.js'
 import messagesRouter from './messages.js'
@@ -10,6 +10,7 @@ import messagesRouter from './messages.js'
 const router = express.Router()
 
 router.use('/:id/messages', messagesRouter)
+
 
 // JSON API endpoint til at hente beskeder, der er nyere end en given ID
 router.get('/:id/messages/new', async (request, response) => {
