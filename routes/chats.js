@@ -1,9 +1,10 @@
 import express from 'express'
 // 1. Importer funktionen til at hente data
-import { getChats, createChat, deleteChat } from '../data/chatData.js'
+import { getChats, createChat, deleteChat, getChatsByUser } from '../data/chatData.js'
 import { getMessagesByChat } from '../data/messageData.js'
 import { getUsers } from '../data/userData.js'
 import messagesRouter from './messages.js'
+
 
 
 const router = express.Router()
