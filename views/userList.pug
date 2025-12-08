@@ -27,7 +27,7 @@ body#userAdminPage
                         td #{user.userName}
                         td #{user.userLvl}
                         td #{new Date(user.oprettelsesDato).toLocaleDateString()}
-                        td #{user.isOnline}
+                        td #{user.isOnline ? "🟢" : "🔴"}
             else
                 tr
                     td(colspan="4") Ingen brugere fundet.
