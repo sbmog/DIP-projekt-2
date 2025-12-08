@@ -76,3 +76,20 @@ export async function createUser(userName, password, userLvl) {
     await saveUsers(users);
     return user;
 }
+
+//Slet bruger
+export async function deleteUser(id) {
+    const users = await getUsers()
+    const initialLenght = users.length
+    const userID = parseInt(id)
+
+    //Liste uden bruger der skal slettes
+    const updatedUsers = users.filter(u => u.id !== userID)
+
+    if(updatedUsers.length===initialLenght)
+        return false
+
+    //Gem den nye liste(uden slettet) som default
+    await saveUsers(updatedUsers)
+    return true
+}
