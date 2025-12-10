@@ -19,7 +19,7 @@ app.use(express.static('assets'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-//Håndtere indlæsning af CSS filer
+// Håndtere indlæsning af CSS filer
 const cssFolder = './assets/css'
 try {
     const files = fs.readdirSync(cssFolder)
@@ -28,7 +28,7 @@ try {
     app.locals.cssFiles = []
 }
 
-//Tillader browseren at sende PUT/DELETE requests via HTML
+// Tillader browseren at sende PUT/DELETE requests via HTML
 app.use(methodOverride('_method'))
 
 app.use(session({
@@ -37,7 +37,7 @@ app.use(session({
     resave: true
 }))
 
-//Gør sessionsdata tilgængelig i alle Pug views. Bruges til at holde styr på om en bruger er online.
+// Gør sessionsdata tilgængelig i alle Pug views. Bruges til at holde styr på om en bruger er online.
 app.use((request, response, next) => {
     response.locals.isLoggedIn = request.session.isLoggedIn
     response.locals.userId = request.session.userId
@@ -46,7 +46,7 @@ app.use((request, response, next) => {
     next()
 })
 
-//Routing, bruges til at give ansvar videre til specifikke filer
+// Routing, bruges til at give ansvar videre til specifikke filer
 app.use('/login', loginRouter)
 app.use('/chats', chatsRouter)
 app.use('/users', usersRouter)
@@ -54,7 +54,7 @@ app.use('/messages', messagesRouter)
 
 
 // Endpoints
-//GET til forsiden
+// GET til forsiden
 app.get('/', (request, response) => {
     response.render('frontpage', { knownUser: request.session.isLoggedIn })
 })

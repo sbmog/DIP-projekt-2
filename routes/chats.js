@@ -7,11 +7,11 @@ import messagesRouter from './messages.js'
 
 const router = express.Router()
 
-//NESTED ROUTING
-//Her sender vi requests videre til messages.js
+// Nested routing
+// Her sender vi requests videre til messages.js
 router.use('/:id/messages', messagesRouter)
 
-//ENDPOINT (POLLING)
+// Endpoit (polling)
 // Henter beskeder, der er nyere end en given ID
 router.get('/:id/messages/new', async (request, response) => {
     const chatId = parseInt(request.params.id);
@@ -25,7 +25,7 @@ router.get('/:id/messages/new', async (request, response) => {
 
     try {
         const allMessages = await getMessagesByChat(chatId);
-        const allUsers = await getUsers(); // Antager denne er importeret
+        const allUsers = await getUsers();
 
         // Filtrer beskeder: Kun dem med ID større end lastMessageId, og derfor nyere
         const newMessages = allMessages.filter(msg => msg.id > lastMessageId)
@@ -95,7 +95,7 @@ router.get('/:id', async (request, response) => {
         return response.status(404).send("Chat ikke fundet")
     }
 
-    // Her henter vi beskederne der hører til den chat
+    // Hent beskederne der hører til den chat
     const messages = await getMessagesByChat(id)
     const users = await getUsers()
 
@@ -117,7 +117,7 @@ router.get('/:id', async (request, response) => {
     response.render('chatRoom', { chat: chat, currentUser: currentUserId, userLvl: userLevel })
 })
 
-// Her kan navnet på en chat opdateres
+// Her opdateres navnet på en chat
 router.patch('/:id', async (request, response) => {
     if (!await authorizeChatAccess(request, response)) {
         return
@@ -133,7 +133,7 @@ router.patch('/:id', async (request, response) => {
     })
 })
 
-// Her sletter vi chats
+// Slet chat
 router.delete('/:id', async (request, response) => {
     if (!await authorizeChatAccess(request, response)) {
         return
@@ -151,6 +151,7 @@ router.delete('/:id', async (request, response) => {
 })
 
 // Hjælpe funktioner
+//Sikre minimum krav for niveau
 function authorizeMinLevel(request, response, minLevel) {
     const userLevel = request.session.userLvl
 
@@ -162,6 +163,7 @@ function authorizeMinLevel(request, response, minLevel) {
     }
 }
 
+// Autoriserer chat adgang, baseret på niveau
 async function authorizeChatAccess(request, response) {
     const id = parseInt(request.params.id)
 

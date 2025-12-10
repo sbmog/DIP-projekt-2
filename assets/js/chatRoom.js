@@ -1,5 +1,3 @@
-// Fil: assets/js/chatRoom.js
-
 document.addEventListener('DOMContentLoaded', () => {
     const chatHeaderDisplay = document.querySelector('.chat-name-display');
     const chatId = chatHeaderDisplay ? chatHeaderDisplay.id.replace('chat-name-display-', '') : null;
@@ -85,7 +83,7 @@ function toggleEdit(msgId) {
     const menuElement = document.querySelector(`#msg-${msgId} .menu-container`)
 
     if (formElement.style.display === 'none') {
-        // VIS REDIGERING
+        // Vis redigering
         textElement.style.display = 'none'
         formElement.style.display = 'block'
         if (menuElement) menuElement.style.display = 'none'
@@ -94,7 +92,7 @@ function toggleEdit(msgId) {
         const inputField = formElement.querySelector('input')
         if (inputField) inputField.focus()
     } else {
-        // ANNULLER REDIGERING
+        // Annuler redigering
         textElement.style.display = 'inline'
         formElement.style.display = 'none'
         if (menuElement) menuElement.style.display = 'block'

@@ -1,5 +1,3 @@
-// Fil: assets/js/chatPolling.js
-
 (function() {
     // Polling interval i millisekunder
     const POLLING_INTERVAL = 3000 
@@ -70,7 +68,7 @@
                 messageList.appendChild(li)
             });
             
-            // Scroll ned til bunden
+            // Scroll ned til bunden, så man ser nyeste besked
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
     }

@@ -23,7 +23,7 @@ async function saveChats(chats) {
 export async function createChat(name, userId) {
     const chats = await getChats()
 
-    // Generer næste id
+    // Generer næste ID
     const id = chats.length ? Math.max(...chats.map(c => c.id)) + 1 : 1
 
     const chat = new Chat(id, name, userId)
@@ -40,7 +40,7 @@ export async function getChatsByUser(userId) {
     return chats.filter(c => c.user === userId)
 }
 
-//Updater chat
+// Opdater chat
 export async function updateChat(id, newName) {
     const chats = await getChats()
     const chatIndex = chats.findIndex(chat => chat.id === id)
@@ -63,23 +63,22 @@ export async function deleteChat(id) {
     const chats = await getChats()
     const initialLength = chats.length
     
-    // 1. Slet alle beskeder, der tilhører chatten (VIGTIGT for dataintegritet)
+    // Sletter alle beskeder, der tilhører chatten
     try {
-        // Kald den nye funktion i messageData.js
         await deleteMessagesByChat(id)
     } catch (error) {
         console.error(`Fejl: Kunne ikke slette beskeder for chat ${id}. Fortsætter med at slette chat.`, error)
     }
     
-    // 2. Filtrer chatten fra listen
+    // Opdatere chat listen
     const updatedChats = chats.filter(chat => chat.id !== id)
     
     if (updatedChats.length === initialLength) {
-        return false // Ingen chat blev slettet
+        return false
     }
 
-    // 3. Gem den opdaterede chat-liste
+    // Gemmer den opdaterede chat-liste
     await saveChats(updatedChats)
     
-    return true // Sletning lykkedes
+    return true
 }

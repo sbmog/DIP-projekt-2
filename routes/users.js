@@ -3,7 +3,7 @@ import { createUser, getUsers, deleteUser } from '../data/userData.js'
 
 const router = express.Router()
 
-//Hjælpe function
+// Hjælpe function
 function authorizeAdmin(request, response) {
     if (request.session.userLvl === 3) {
         return true
@@ -12,16 +12,15 @@ function authorizeAdmin(request, response) {
     return false
 }
 
-//EndPoint
-
-// OPRET BRUGER: Vis opret siden (Kun Admin)
+// Endpoints
+// Vis opret siden (Kun Admin)
 router.get('/create', (request, response) => {
     if (!authorizeAdmin(request, response)) return
 
     response.render('createUser', { title: 'Opret bruger' })
 })
 
-// OPRET BRUGER: Håndter POST (Kun Admin)
+// Opret bruger (Kun Admin)
 router.post('/create', async (request, response) => {
     if (!authorizeAdmin(request, response)) return
 
@@ -39,6 +38,7 @@ router.post('/create', async (request, response) => {
     }
 })
 
+// Finder liste af brugere
 router.get('/', async (request, response) => {
     const allUsers = await getUsers()
 
@@ -53,14 +53,14 @@ router.get('/', async (request, response) => {
     response.render('userList', { users: safeUsers, title: 'Brugeradministration' })
 })
 
+// Finder en specifik bruger
 router.get('/:id', async (request, response) => {
     const id = parseInt(request.params.id)
     const users = await getUsers()
 
-    //Find den specifikke bruger
     const user = users.find(user => user.id === id)
 
-    //Hvis bruger ikke findes
+    // Hvis bruger ikke findes
     if (!user) {
         return response.status(404).json({ error: "User ikke fundet" })
     }

@@ -49,7 +49,7 @@ function checkAccess(request, response, next) {
     if (request.url === '/chats' && !request.session.isLoggedIn) {
         response.redirect('/')
     } else {
-        // du er logget ind :) OK du får adgang
+        // Du er logget ind
         next()
     }
 }
