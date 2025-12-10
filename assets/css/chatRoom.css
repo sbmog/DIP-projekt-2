@@ -168,7 +168,7 @@ body#chatpage {
   font-size: 18px;
   /* Størrelse på prikkerne */
   color: #aaa;
-  line-height: 8px;
+  line-height: 20px;
   font-weight: bold;
   user-select: none;
   /* Gør at man ikke kan markere prikkerne som tekst */
@@ -191,11 +191,9 @@ body#chatpage {
 /* Dropdown Menuen (Boksen) --- */
 .dropdown-menu {
   display: none;
-  position: absolute;
-  /* Flyder ovenpå indholdet */
-  right: 0;
+  position: absolute; /* Flyder ovenpå indholdet */
+  right: -10;
   top: 100%;
-  /* Starter lige under prikkerne */
   background-color: white;
   min-width: 120px;
   border: 1px solid #ddd;
