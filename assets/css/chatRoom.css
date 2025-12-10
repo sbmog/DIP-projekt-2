@@ -1,3 +1,5 @@
+/* Selve chatten - tilhøre chatRoom.pug */
+/* --- Layout af siden --- */
 body#chatpage {
   display: flex;
   justify-content: center;
@@ -10,20 +12,20 @@ body#chatpage {
   color: white;
 }
 
-/* Selve "Chat boksen" */
+/* Containeren der holder hele chat-appen*/
 .chat-container {
   width: 100%;
   max-width: 600px;
+  height: 80vh;
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 80vh;
 }
 
-/* Toppen med overskrift */
+/* --- Toppen af chatten --- */
 .chat-header {
   background-color: #007bff;
   color: white;
@@ -36,10 +38,11 @@ body#chatpage {
 .chat-name-wrapper {
   flex-grow: 1;
   display: flex;
+  justify-content: center;
   align-items: center;
   position: relative;
   margin: 0 10px;
-  justify-content: center;
+
 }
 
 .chat-header h1 {
@@ -63,6 +66,7 @@ body#chatpage {
   flex-shrink: 0;
 }
 
+/* --- Besked område --- */
 .messages {
   flex: 1;
   padding: 20px;
@@ -78,16 +82,32 @@ body#chatpage {
   flex-direction: column;
 }
 
+/* --- Styling af beskeder --- */
 .message-bubble {
-  background-color: #e4e6eb;
-  color: #050505;
-  padding: 10px 15px;
-  border-radius: 18px;
-  margin-bottom: 10px;
+  /* Layout */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   max-width: 75%;
   align-self: flex-start;
   position: relative;
+
+  /* Udseende */
+  background-color: #e4e6eb;
+  color: #050505;
+  padding: 10px 15px;
+  padding-right: 5px;
+  border-radius: 18px;
+  margin-bottom: 10px;
   word-wrap: break-word;
+}
+
+/* Selve teksten inde i boblen */
+.message-content {
+  flex: 1;
+  margin-right: 15px;
+  word-break: break-word;
+  margin-left: 10px;
 }
 
 .user-name {
@@ -95,8 +115,90 @@ body#chatpage {
   font-size: 0.75rem;
   color: #666;
   margin-bottom: 2px;
+  margin-left: -10px;
 }
 
+/* --- Dropdown manu (de 3 prikker) --- */
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  background-color: white;
+  min-width: 120px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  padding: 5px 0;
+  overflow: hidden;
+}
+
+.menu-container {
+  position: relative;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+/* Selve ikonet (⋮) */
+.dots {
+  font-size: 18px;
+  color: #aaa;
+  line-height: 20px;
+  font-weight: bold;
+  user-select: none;
+  transition: color 0.2s;
+  display: block;
+  text-align: center;
+}
+
+.chat-header .dots {
+  color: white;
+  font-size: 24px;
+}
+
+.menu-container:hover .dots {
+  color: #333;
+}
+
+
+.menu-container:hover .dropdown-menu {
+  display: block;
+}
+
+/* Knapperne INDE i dropdown menuen */
+.delete-msg-btn,
+.edit-msg-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  transition: background-color 0.1s;
+}
+
+.delete-msg-btn {
+  color: #dc3545;
+}
+
+.edit-msg-btn {
+  color: #007bff;
+}
+
+.delete-msg-btn:hover,
+.edit-msg-btn:hover {
+  background-color: #f8f9fa;
+}
+
+/* --- Input feltet i bunden */
 .chat-form {
   padding: 15px;
   background-color: white;
@@ -133,131 +235,13 @@ body#chatpage {
   background-color: #0056b3;
 }
 
-
-/* Tilpasning af Taleboblen --- */
-/* Vi bruger flexbox for at placere tekst til venstre og menu til højre */
-.message-bubble {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  position: relative;
-  /* Nødvendig for at menuen hænger fast her */
-  padding-right: 5px;
-}
-
-/* Sikrer at selve beskeden tager pladsen og skubber menuen ud til siden */
-.message-content {
-  flex: 1;
-  margin-right: 15px;
-  /* Afstand hen til de 3 prikker */
-  word-break: break-word;
-}
-
-
-/* De 3 Prikker (Menu-knappen) --- */
-.menu-container {
-  position: relative;
-  cursor: pointer;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding-left: 10px;
-}
-
-.dots {
-  font-size: 18px;
-  /* Størrelse på prikkerne */
-  color: #aaa;
-  line-height: 8px;
-  font-weight: bold;
-  user-select: none;
-  /* Gør at man ikke kan markere prikkerne som tekst */
-  transition: color 0.2s;
-  display: block;
-  text-align: center;
-}
-
-.chat-header .dots {
-  color: white;
-  font-size: 24px;
-}
-
-/* Farv prikkerne mørkere når man holder musen over */
-.menu-container:hover .dots {
-  color: #333;
-}
-
-
-/* Dropdown Menuen (Boksen) --- */
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  /* Flyder ovenpå indholdet */
-  right: 0;
-  top: 100%;
-  /* Starter lige under prikkerne */
-  background-color: white;
-  min-width: 120px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 100;
-  padding: 5px 0;
-  overflow: hidden;
-}
-
-/* Når man holder musen over containeren, vis dropdown-menuen */
-.menu-container:hover .dropdown-menu {
-  display: block;
-}
-
-
-/* Knapperne INDE i menuen (Slet & Ret) --- */
-.delete-msg-btn,
-.edit-msg-btn {
-  display: block;
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: none;
-  padding: 10px 15px;
-  font-size: 14px;
-  cursor: pointer;
-  text-decoration: none;
-  font-family: inherit;
-  transition: background-color 0.1s;
-}
-
-.delete-msg-btn {
-  color: #dc3545;
-}
-
-.edit-msg-btn {
-  color: #007bff;
-}
-
-/* Hover effekt på menupunkterne */
-.delete-msg-btn:hover,
-.edit-msg-btn:hover {
-  background-color: #f8f9fa;
-}
-
-
-/* --- Styling til Edit Mode --- */
+/* --- Redigeringstilstand --- */
 .edit-form {
   margin-top: 5px;
   width: 100%;
   display: flex;
   gap: 5px;
   align-items: center;
-}
-
-.edit-form .edit-input {
-  flex: 1;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
 }
 
 .edit-input {
@@ -269,63 +253,41 @@ body#chatpage {
   box-sizing: border-box;
 }
 
-.edit-chat-name-form .edit-input {
-  flex-grow: 1;
-  padding: 8px 10px;
-  border-radius: 4px;
-  border: 1px solid #007bff;
-  font-size: 1.2rem;
-  margin-right: 10px;
-}
-
 .edit-buttons {
   display: flex;
   gap: 5px;
 }
 
-.save-btn {
-  background-color: #28a745;
-  color: white;
+
+/* Knapper til Gem / Annuller */
+.save-btn,
+.cancel-btn-small {
   border: none;
   padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 12px;
+  color: white;
 }
 
+.save-btn {
+  background-color: #28a745;
+}
 .cancel-btn-small {
   background-color: #6c757d;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
 }
 
 .save-btn:hover {
   background-color: #218838;
 }
-
 .cancel-btn-small:hover {
   background-color: #5a6268;
 }
 
-/*Besked-dots retknapper*/
-.message-content .save-btn,
-.message-content .cancel-btn-small {
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-/*chat-dots knapper*/
-.chat-header .save-btn,
-.chat-header .cancel-btn-small {
-  padding: 5px 10px;
-  font-size: 0.9rem;
-  line-height: normal;
-  margin: 0;
+/* Specifik styling når man retter Chat-navnet i headeren */
+.edit-chat-name-form .edit-input {
+  font-size: 1.2rem;
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid white;
 }

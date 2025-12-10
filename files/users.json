@@ -22,5 +22,13 @@
     "oprettelsesDate": "2025-11-24T08:00:00.000Z",
     "userLvl": 3,
     "isOnline": false
+  },
+  {
+    "id": 4,
+    "userName": "2level",
+    "password": "2pass",
+    "oprettelsesDate": "2025-11-24T08:00:00.000Z",
+    "userLvl": 2,
+    "isOnline": false
   }
 ]
