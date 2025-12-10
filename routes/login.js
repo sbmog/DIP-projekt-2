@@ -23,7 +23,11 @@ router.post('/', async (request, response) => {
             response.redirect('/chats')
         })
     } else {
-        response.render('error', { data: { username: username, password: password, message: "Forkert brugernavn eller kodeord." } })
+        response.render('frontpage', {
+            loginError: "Forkert brugernavn eller kodeord.",
+            // Send de værdier, som frontpage skal bruge
+            title: 'Velkommen til din chat'
+        })
     }
 })
 
