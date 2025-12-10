@@ -1,9 +1,12 @@
+/* Oprettelse af chat - tilhøre chatRoom.pug */
+
+/* --- Side layout --- */
 body#createChat {
   display: flex;
   flex-direction: column;
-  align-items: center;    
-  justify-content: center;  
-  min-height: 80vh;       
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
 }
 
 body#createChat h1 {
@@ -13,18 +16,23 @@ body#createChat h1 {
   text-align: center;
 }
 
+/* --- Formular boksen --- */
 body#createChat form {
   background-color: white;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-  display: flex;
-  flex-direction: column;
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
+  padding: 40px;
+
+  /* Udseende */
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
 }
 
+
+/* --- Labels & input felter */
 body#createChat label {
   margin-bottom: 8px;
   font-weight: 600;
@@ -32,8 +40,7 @@ body#createChat label {
   font-size: 14px;
 }
 
-
-body#createChat input[type="text"] {
+.form-input {
   padding: 12px 15px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -41,10 +48,21 @@ body#createChat input[type="text"] {
   font-size: 16px;
   transition: border-color 0.2s;
   outline: none;
+  box-sizing: border-box; 
+  width: 100%; 
 }
 
-body#createChat input[type="text"]:focus {
+.form-input:focus {
   border-color: #007bff;
+}
+
+/* --- Knapper (opret & annulering) --- */
+
+/* Fælles styling for knap-interaktion */
+body#createChat button,
+.cancel-btn {
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
 }
 
 /* Opret knappen */
@@ -56,23 +74,17 @@ body#createChat button {
   border-radius: 8px;
   font-size: 16px;
   font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
 }
 
 body#createChat button:hover {
   background-color: #218838;
 }
 
-body#createChat button:active {
-  transform: scale(0.98);
-}
-
 /* Anullerings knappen */
 .cancel-btn {
   display: block;
   text-align: center;
-  
+  margin-top: 10px;
   background-color: #dc3545;
   color: white;
   border: none;
@@ -80,17 +92,15 @@ body#createChat button:active {
   border-radius: 8px;
   font-size: 16px;
   font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
   text-decoration: none;
-  margin-top: 10px;
-  box-sizing: border-box;
 }
 
 .cancel-btn:hover {
   background-color: #c82333;
 }
 
+/* Knappen bliver lidt mindre når man trykker */
+body#createChat button:active,
 .cancel-btn:active {
   transform: scale(0.98);
 }

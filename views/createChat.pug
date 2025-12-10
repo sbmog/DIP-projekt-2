@@ -6,6 +6,7 @@ body#createChat
   #create
   form(action="/chats/create" method="POST")
     label Navn på chat:
-    input(type="text" name="chatName" required)
+    input#tekstinput.form-input(type="text" name="chatName" required)
+    
     button(type="submit") Opret
     a.cancel-btn(href="/chats") Annuller
