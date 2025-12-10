@@ -4,10 +4,10 @@ import { createMessage, updateMessage, deleteMessage, getMessageById, getMessage
 import { getChats } from '../data/chatData.js'
 
 // VIGTIGT: 'mergeParams: true' gør, at vi kan få adgang til ':id' parameteren
-// fra den router, der monterer denne (i dette tilfælde routes/chats.js)
+// fra den router, der monterer denne (i dette tilfælde routes/messages.js)
 const router = express.Router({ mergeParams: true })
 
-// Hent alle chats for en specifik bruger
+// Hent alle beskeder for en specifik bruger
 router.get('/my', async (request, response) => {
     if (!request.session.isLoggedIn) {
         return response.redirect('/')
@@ -49,7 +49,7 @@ router.post('/', async (request, response) => {
         console.error("Fejl ved oprettelse af besked:", error)
         response.status(500).send("Fejl ved oprettelse af besked")
     }
-});
+})
 
 // Opdater en specifik besked
 router.patch('/:messageId', async (request, response) => {
@@ -59,7 +59,7 @@ router.patch('/:messageId', async (request, response) => {
 
     const chatId = parseInt(request.params.id)
     const messageId = parseInt(request.params.messageId)
-    const newContent = request.body.content;
+    const newContent = request.body.content
 
     try {
         const updatedMsg = await updateMessage(messageId, newContent)
@@ -74,7 +74,7 @@ router.patch('/:messageId', async (request, response) => {
         console.error("Fejl ved opdatering af besked:", error)
         response.status(500).send("Fejl ved opdatering af besked")
     }
-});
+})
 
 // Slet en specifik besked
 router.delete('/:messageId', async (request, response) => {

@@ -53,7 +53,7 @@
             newMessages.forEach(msg => {
                 const li = document.createElement('li')
                 li.classList.add('message-bubble')
-                li.setAttribute('data-message-id', msg.id); // Gem ID'en i DOM'en
+                li.setAttribute('data-message-id', msg.id) // Gem ID'en i DOM'en
 
                 const strong = document.createElement('strong')
                 strong.classList.add('user-name')
@@ -69,7 +69,7 @@
             });
             
             // Scroll ned til bunden, så man ser nyeste besked
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            messagesContainer.scrollTop = messagesContainer.scrollHeight
         }
     }
     

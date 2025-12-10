@@ -11,13 +11,14 @@ export async function getUsers() {
     } catch (error) {
         // Opret en initial liste, hvis filen ikke findes
         if (error.code === 'ENOENT') {
-             // Backup brugere, kan bruges til at kunne logge ind,
-             // i tilfælde af, at vi mister vores JSON fil med brugere. 
+            // Backup brugere, kan bruges til at kunne logge ind,
+            // i tilfælde af, at vi mister vores JSON fil med brugere. 
             const initialUsers = [
                 new User(1, 'level1_user', 'pass1', 1),
                 new User(2, 'level2_user', 'pass2', 2),
-                new User(3, 'level3_admin', 'pass3', 3)
-            ];
+                new User(3, 'level3_admin', 'pass3', 3),
+                new User(4, 'extraLevel2', 'pass4', 2)
+            ]
             await saveUsers(initialUsers)
             return initialUsers
         }
@@ -111,6 +112,6 @@ export async function resetAllUserStatuses() {
         console.log("Alle brugeres online status er nulstillet ved server start.")
         return true
     }
-    console.log("Ingen online statusser skulle nulstilles");
+    console.log("Ingen online statusser skulle nulstilles")
     return false
 }

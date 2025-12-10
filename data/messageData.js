@@ -77,11 +77,11 @@ export async function deleteMessage(messageId) {
     const newMessages = messages.filter(m => m.id !== messageId)
     
     if (newMessages.length === initialLength) {
-        return false;
+        return false
     }
 
     await saveMessages(newMessages)
-    return true;
+    return true
 }
 
 // Slet beskeder fra specifik chat
