@@ -1,3 +1,6 @@
+/* Forside / Login - tilhører frontpage.pug */
+
+/* --- Overskrifter og tekst --- */
 body#frontpage h1 {
   font-style: italic;
   margin-bottom: 20px;
@@ -5,23 +8,28 @@ body#frontpage h1 {
 }
 
 body#frontpage h2 {
-    font-size: 1.2rem;
-    color: #555;
-    margin-bottom: 20px;
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 20px;
 }
 
+/* --- Login boksen --- */
 body#frontpage #login {
+  /* Udseende */
   background-color: white;
-  padding: 40px;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  
+  /* Layout */
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   max-width: 300px;
+  padding: 40px;
 }
 
+/* --- Input felter --- */
 body#frontpage #login input {
   display: block;
   width: 100%;
@@ -39,6 +47,7 @@ body#frontpage #login input:focus {
   border-color: #007bff;
 }
 
+/* --- Log ind knappen --- */
 body#frontpage #login button {
   width: 100%;
   margin-top: 20px;
