@@ -23,7 +23,11 @@ router.post('/', async (request, response) => {
             response.redirect('/chats')
         })
     } else {
-        response.render('error', { data: { username: username, password: password, message: "Forkert brugernavn eller kodeord." } })
+        response.render('frontpage', {
+            loginError: "Forkert brugernavn eller kodeord.",
+            // Send de værdier, som frontpage skal bruge
+            title: 'Velkommen til din chat'
+        })
     }
 })
 
@@ -40,8 +44,8 @@ async function checkUserCredientials(username, password) {
 }
 
 function checkAccess(request, response, next) {
-    console.log("Forsøg på adgang til siden: " + request.url)
-    // Forsøg på at se /chats siden UDEN at være logget ind
+    console.log("Tjekker session... Forsøg på adgang til siden: " + request.url);
+    // forsøg på at se /chats siden UDEN at være logget ind
     if (request.url === '/chats' && !request.session.isLoggedIn) {
         response.redirect('/')
     } else {

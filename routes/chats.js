@@ -1,5 +1,6 @@
 import express from 'express'
-import { getChats, createChat, deleteChat} from '../data/chatData.js'
+// 1. Importer funktionen til at hente data
+import { getChats, createChat, deleteChat, updateChat } from '../data/chatData.js'
 import { getMessagesByChat } from '../data/messageData.js'
 import { getUsers } from '../data/userData.js'
 import messagesRouter from './messages.js'
@@ -14,8 +15,10 @@ router.use('/:id/messages', messagesRouter)
 // Henter beskeder, der er nyere end en given ID
 router.get('/:id/messages/new', async (request, response) => {
     const chatId = parseInt(request.params.id);
-    const lastMessageId = parseInt(request.query.lastId) || 0 
-    
+    // Hent lastId fra URL'en (f.eks. ?lastId=10)
+    const lastMessageId = parseInt(request.query.lastId) || 0;
+
+    // Simpel adgangstjek
     if (!request.session.isLoggedIn) {
         return response.status(401).json({ error: "Uautoriseret" })
     }
@@ -126,7 +129,7 @@ router.patch('/:id', async (request, response) => {
     await updateChat(id, newName)
 
     request.session.save(() => {
-        response.redirect('/chats')
+        response.status(204).send()
     })
 })
 
@@ -140,7 +143,7 @@ router.delete('/:id', async (request, response) => {
 
     if (success) {
         request.session.save(() => {
-            response.status(204).send()
+            response.redirect(303, '/chats');
         })
     } else {
         response.status(404).send("Chatten blev ikke fundet")

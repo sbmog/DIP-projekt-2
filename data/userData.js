@@ -87,10 +87,30 @@ export async function deleteUser(id) {
     // Liste uden bruger der skal slettes
     const updatedUsers = users.filter(u => u.id !== userID)
 
-    if(updatedUsers.length===initialLenght)
+    if (updatedUsers.length === initialLenght)
         return false
 
     // Gem den nye liste, uden den slettede bruger
     await saveUsers(updatedUsers)
     return true
+}
+
+export async function resetAllUserStatuses() {
+    const users = await getUsers()
+    let needsSaving = false
+
+    users.forEach(u => {
+        if (u.isOnline) {
+            u.isOnline = false
+            needsSaving = true
+        }
+    })
+
+    if (needsSaving) {
+        await saveUsers(users)
+        console.log("Alle brugeres online status er nulstillet ved server start.")
+        return true
+    }
+    console.log("Ingen online statusser skulle nulstilles");
+    return false
 }

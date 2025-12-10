@@ -2,7 +2,7 @@ import express from 'express'
 import session from 'express-session'
 import methodOverride from 'method-override'
 import fs from 'fs'
-import { updateUserStatus } from './data/userData.js'
+import { updateUserStatus, resetAllUserStatuses } from './data/userData.js'
 
 import loginRouter from './routes/login.js'
 import chatsRouter from './routes/chats.js'
@@ -59,19 +59,24 @@ app.get('/', (request, response) => {
     response.render('frontpage', { knownUser: request.session.isLoggedIn })
 })
 
-// GET til logout
-app.get('/logout', async(request, response) => {
+//GET til logout
+app.get('/logout', async (request, response) => {
     const userId = request.session.userId
 
     if (userId) {
-        // Opdatere bruger status i JSON filen, før sessionen sluttes
-        await updateUserStatus(userId, false) 
+        //Opdatere bruger status i JSON filen, før sessionen sluttes
+        await updateUserStatus(userId, false)
     }
     request.session.destroy()
     response.redirect('/')
 })
 
-app.listen(port, () => {
-    console.log(`Server is listening at http://localhost:${port}`)
+app.listen(port, async () => {
+    try {
+        await resetAllUserStatuses()
+        console.log(`Server is listening at http://localhost:${port}`)
+    } catch (error) {
+        console.error("Fejl ved server start:", error);
+    }
 })
 
