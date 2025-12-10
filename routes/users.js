@@ -67,4 +67,20 @@ router.get('/:id', async (request, response) => {
     response.json(user)
 })
 
+//Slet bruger (admin)
+router.delete('/:id', async (request, response) => {
+    if (request.session.userLvl !== 3) {
+        return response.status(403).send("Adgang nægtet. Kun administratorer kan slette brugere.")
+    }
+
+    const id = request.params.id
+    const success = await deleteUser(id)
+
+    if (success) {
+        response.redirect('/users')
+    } else {
+        response.status(404).send("Brugeren blev ikke fundet.")
+    }
+})
+
 export default router
