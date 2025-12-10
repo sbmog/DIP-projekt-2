@@ -1,24 +1,29 @@
-
+/* --- Admin Containeren --- */
 .admin-container {
+    /* Layout og størrelse */
     width: 100%;
     max-width: 800px; 
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     overflow: hidden;
+    
+    /* Udseende */
     display: flex;
     flex-direction: column;
     height: 80vh;
 }
 
-
+/* --- Admin Header overskrift --- */
 .admin-header h1 {
     margin: 0;
+    /* Tekst styling */
     font-size: 1.2rem;
     font-weight: 600;
     color: white;
 }
 
+/* --- Bruger tabellen --- */
 .user-table {
     width: 80%;
     border-collapse: collapse;
@@ -26,6 +31,7 @@
     background-color: white;
 }
 
+/* --- Celler (Rækker og kolonner) --- */
 .user-table th, 
 .user-table td {
     border-bottom: 1px solid #eee;
@@ -33,14 +39,18 @@
     text-align: left;
 }
 
+/* --- Tabel header --- */
 .user-table th {
+    /* Udseende*/
     background-color: #f8f9fa;
     color: #333;
     font-weight: 600;
+    /* Sticky header, bliver i toppen af scroll */
     position: sticky;
     top: 0;
 }
 
+/* --- Hover effekter ---*/
 .user-table tbody tr:hover {
     background-color: #e2f4ff;
 }

@@ -3,20 +3,22 @@ import User from "../models/user.js"
 
 const FILE = "./files/users.json"
 
-// Læs users fra JSON
+// Læs brugere fra JSON
 export async function getUsers() {
     try {
         const txt = await fs.readFile(FILE, "utf8")
         return JSON.parse(txt)
     } catch (error) {
-        // Opretter en initial liste, hvis filen ikke findes
+        // Opret en initial liste, hvis filen ikke findes
         if (error.code === 'ENOENT') {
-             // Opret testbrugere for niveauer 1, 2 og 3
+            // Backup brugere, kan bruges til at kunne logge ind,
+            // i tilfælde af, at vi mister vores JSON fil med brugere. 
             const initialUsers = [
                 new User(1, 'level1_user', 'pass1', 1),
                 new User(2, 'level2_user', 'pass2', 2),
-                new User(3, 'level3_admin', 'pass3', 3)
-            ];
+                new User(3, 'level3_admin', 'pass3', 3),
+                new User(4, 'extraLevel2', 'pass4', 2)
+            ]
             await saveUsers(initialUsers)
             return initialUsers
         }
@@ -24,18 +26,18 @@ export async function getUsers() {
     }
 }
 
-// Gem users til JSON
+// Gem brugere til JSON
 export async function saveUsers(users) {
     await fs.writeFile(FILE, JSON.stringify(users, null, 2), "utf8")
 }
 
-// Find user ved username (til login)
+// Find bruger ved username (til login)
 export async function getUserByUsername(username) {
     const users = await getUsers()
     return users.find(u => u.userName === username)
 }
 
-// Find user ved id
+// Find bruger ved ID
 export async function getUserById(id) {
     const users = await getUsers()
     // Sikrer at vi kun returnerer de offentlige data fra User-modellen
@@ -67,7 +69,7 @@ export async function createUser(userName, password, userLvl) {
     }
     // Beregn næste ID:
     // Vi bruger "..." (spread) til at pakke listen af ID'er ud, så Math.max kan læse dem.
-    // Hvis listen er tom, starter vi på 1.
+    // Hvis listen er tom, bliver ID sat til 1.
     const id = users.length ? Math.max(...users.map(u => u.id)) + 1 : 1
 
     const user = new User(id, userName, password, userLvl)
@@ -77,19 +79,39 @@ export async function createUser(userName, password, userLvl) {
     return user
 }
 
-//Slet bruger
+// Slet bruger
 export async function deleteUser(id) {
     const users = await getUsers()
     const initialLenght = users.length
     const userID = parseInt(id)
 
-    //Liste uden bruger der skal slettes
+    // Liste uden bruger der skal slettes
     const updatedUsers = users.filter(u => u.id !== userID)
 
-    if(updatedUsers.length===initialLenght)
+    if (updatedUsers.length === initialLenght)
         return false
 
-    //Gem den nye liste(uden slettet) som default
+    // Gem den nye liste, uden den slettede bruger
     await saveUsers(updatedUsers)
     return true
+}
+
+export async function resetAllUserStatuses() {
+    const users = await getUsers()
+    let needsSaving = false
+
+    users.forEach(u => {
+        if (u.isOnline) {
+            u.isOnline = false
+            needsSaving = true
+        }
+    })
+
+    if (needsSaving) {
+        await saveUsers(users)
+        console.log("Alle brugeres online status er nulstillet ved server start.")
+        return true
+    }
+    console.log("Ingen online statusser skulle nulstilles")
+    return false
 }

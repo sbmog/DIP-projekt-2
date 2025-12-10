@@ -8,7 +8,7 @@ export default class user {
         this.isOnline = false
     }
 
-    getPublivDate() {
+    getPublicDate() {
         return {
             id: this.id,
             userName: this.userName,

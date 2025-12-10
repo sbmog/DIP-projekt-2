@@ -30,7 +30,9 @@ body#userAdminPage
                         td #{new Date(user.oprettelsesDato).toLocaleDateString()}
                         td #{user.isOnline ? "🟢" : "🔴"}
                         td
-                            a.delete-chat-btn(href="javascript:void(0)", onclick=`deleteUser(${user.id})`) Slet 
+                            if user.id != userId 
+                                form(action=`/users/${user.id}?_method=DELETE` method="POST" onsubmit="return confirm('Er du sikker på, at du vil slette denne bruger? Dette kan ikke fortrydes!');")
+                                    button.delete-chat-btn(type="submit") Slet
             else
                 tr
                     td(colspan="4") Ingen brugere fundet.

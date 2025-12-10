@@ -3,6 +3,7 @@ import { promises as fs } from "fs"
 
 const FILE = "./files/messages.json"
 
+// Hent beskeder
 async function getMessages() {
     try {
         const txt = await fs.readFile(FILE, "utf8")
@@ -29,36 +30,35 @@ export async function createMessage(messageContent, userId, chatId) {
     return msg
 }
 
-// Hent alle beskeder
 export async function getAllMessages() {
     return getMessages()
 }
 
-// Hent beskeder for en chat
+// Hent beskeder for en specifik chat
 export async function getMessagesByChat(chatId) {
     const messages = await getMessages()
     return messages.filter(m => m.chat === chatId)
 }
 
-// Hent beskeder for en bruger
+// Hent beskeder for en specifik bruger
 export async function getMessagesByUser(userId) {
     const messages = await getMessages()
     return messages.filter(m => m.user === userId)
 }
 
-// Hent beskeder ved id
+// Hent beskeder ved besked-id
 export async function getMessageById(messageId) {
     const messages = await getMessages()
     return messages.find(m => m.id === messageId)
 }
 
-// Opdater besked
+// Ret/Opdater besked
 export async function updateMessage(messageId, newContent) {
     const messages = await getMessages()
     const index = messages.findIndex(m => m.id === messageId)
 
     if (index === -1) {
-        return null // Besked ikke fundet
+        return null
     }
 
     // Opdater indhold og oprettelsesdato
@@ -77,13 +77,14 @@ export async function deleteMessage(messageId) {
     const newMessages = messages.filter(m => m.id !== messageId)
     
     if (newMessages.length === initialLength) {
-        return false; // Besked ikke fundet
+        return false
     }
 
     await saveMessages(newMessages)
-    return true; // Besked slettet
+    return true
 }
 
+// Slet beskeder fra specifik chat
 export async function deleteMessagesByChat(chatId) {
     const messages = await getMessages()
     
