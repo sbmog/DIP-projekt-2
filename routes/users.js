@@ -3,7 +3,7 @@ import { createUser, getUsers, deleteUser } from '../data/userData.js'
 
 const router = express.Router()
 
-// Hjælpe function
+// Hjælpe function - tjek om admin
 function authorizeAdmin(request, response) {
     if (request.session.userLvl === 3) {
         return true
@@ -53,7 +53,7 @@ router.get('/', async (request, response) => {
     response.render('userList', { users: safeUsers, title: 'Brugeradministration' })
 })
 
-// Finder en specifik bruger
+// Finder en specifik bruger - vist som json
 router.get('/:id', async (request, response) => {
     const id = parseInt(request.params.id)
     const users = await getUsers()

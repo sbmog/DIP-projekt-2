@@ -56,7 +56,10 @@ app.use('/messages', messagesRouter)
 // Endpoints
 // GET til forsiden
 app.get('/', (request, response) => {
-    response.render('frontpage', { knownUser: request.session.isLoggedIn })
+    if (request.session.isLoggedIn) {
+        response.redirect('/chats')
+    } else
+        response.render('frontpage', { knownUser: request.session.isLoggedIn })
 })
 
 //GET til logout
@@ -71,12 +74,13 @@ app.get('/logout', async (request, response) => {
     response.redirect('/')
 })
 
+//Launch server, med tjek af online er nulstillet
 app.listen(port, async () => {
     try {
         await resetAllUserStatuses()
         console.log(`Server is listening at http://localhost:${port}`)
     } catch (error) {
-        console.error("Fejl ved server start:", error);
+        console.error("Fejl ved server start:", error)
     }
 })
 
