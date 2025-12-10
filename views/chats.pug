@@ -1,8 +1,10 @@
 include includes/header
 
+// Styles i chatListStyle.css
 body#chatpage
   h1 Chat oversigt
 
+  // De øvereste knapper 
   div.action-buttons
     // Link til at oprette en ny chat
     if userLvl >=2
@@ -19,6 +21,7 @@ body#chatpage
     else 
       a.create-btn(href="/") Log ind
 
+  // Selve listen over chats
   ul#chatList
     if chats.length > 0
       each chat in chats
@@ -28,15 +31,5 @@ body#chatpage
               a.delete-chat-btn(href="javascript:void(0)", onclick=`deleteChat(${chat.id})`) 🗑️
     else
       p Ingen chats fundet.
-script.
-    async function deleteChat(chatId) {
-      if (!confirm('Er du sikker på, at du vil slette denne chat?')) return
-      const response = await fetch('/chats/' + chatId, {
-        method: 'DELETE'
-      });
-      if (response.ok) {
-        window.location.reload();
-      } else {
-        alert('Der skete en fejl. Kunne ikke slette chatten.')
-      }
-    }
+// Håndtering at slette 
+script(src="/js/chat.js")
