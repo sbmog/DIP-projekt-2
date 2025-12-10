@@ -36,10 +36,10 @@ body#chatpage
               div.message-content
                 strong.user-name #{msg.userName || 'Bruger'}:
                 
-                // 1. VISNING: Den normale tekst (Synlig som standard)
+                // VISNING: Den normale tekst (Synlig som standard)
                 span.message-text(id=`text-${msg.id}`) #{msg.messageContent || msg.content}
                 
-                // 2. REDIGERING: Skjult formular til at rette (Skjult som standard)
+                // REDIGERING: Skjult formular til at rette (Skjult som standard)
                 if msg.userId == currentUser
                   form.edit-form(id=`edit-form-${msg.id}` action=`/chats/${chat.id}/messages/${msg.id}?_method=PATCH` method="POST" style="display:none;")
                     input.edit-input(type="text" name="content" value=(msg.messageContent || msg.content) required autocomplete="off")

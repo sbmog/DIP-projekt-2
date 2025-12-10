@@ -11,37 +11,30 @@ document.addEventListener('DOMContentLoaded', () => {
         // Lukker chat-header menuen
         const chatHeaderMenu = document.getElementById(`chat-dropdown-menu-${chatId}`);
         const chatHeaderDots = document.querySelector(`#chat-menu-container-${chatId} .dots`);
+        // Vælg knappen via dens klasse
+        const deleteButton = document.querySelector('.delete-chat-btn')
 
-        if (chatHeaderMenu && chatHeaderMenu.classList.contains('show') &&
-            !chatHeaderMenu.contains(event.target) &&
-            (!chatHeaderDots || !chatHeaderDots.contains(event.target))) {
-            chatHeaderMenu.classList.remove('show');
+        if (deleteButton) {
+            deleteButton.addEventListener('click', async (event) => {
+                // Forhindrer browseren i at navigere væk (href="#")
+                event.preventDefault()
+
+                // Henter chat ID fra data-chat-id attributten på knappen
+                const chatId = event.target.dataset.chatId;
+
+                if (!confirm(`Er du sikker på, at du vil slette chat ID: ${chatId}?`)) {
+                    return
+                }
+
+                if (chatHeaderMenu && chatHeaderMenu.classList.contains('show') &&
+                    !chatHeaderMenu.contains(event.target) &&
+                    (!chatHeaderDots || !chatHeaderDots.contains(event.target))) {
+                    chatHeaderMenu.classList.remove('show');
+                }
+            })
         }
     })
 })
-
-// Skift mellem visning og redigering af beskeder
-function toggleEdit(messageId) {
-    const textElement = document.getElementById(`text-${messageId}`);
-    const editForm = document.getElementById(`edit-form-${messageId}`);
-    
-    // Luk den globale chat-menu, hvis den er åben
-    const chatHeaderDisplay = document.querySelector('.chat-name-display');
-    const chatId = chatHeaderDisplay ? chatHeaderDisplay.id.replace('chat-name-display-', '') : null;
-    const chatMenu = document.getElementById(`chat-dropdown-menu-${chatId}`);
-    if (chatMenu) chatMenu.classList.remove('show');
-
-    // Skift visningstilstand for besked og form
-    if (textElement.style.display !== 'none') {
-        textElement.style.display = 'none';
-        editForm.style.display = 'flex'; // Antager CSS for edit-form bruger flex
-        editForm.querySelector('.edit-input').focus();
-    } else {
-        textElement.style.display = 'block';
-        editForm.style.display = 'none';
-    }
-}
-
 
 // Vis/skjul chat header menu
 function toggleChatMenu(chatId) {
@@ -64,15 +57,15 @@ function toggleEditChatName(chatId) {
     const editForm = document.getElementById(`edit-chat-name-form-${chatId}`);
     const menuContainer = document.getElementById(`chat-menu-container-${chatId}`);
     const inputField = editForm.querySelector('input[name="name"]');
-    
+
     // Luk menuen først
     const menu = document.getElementById(`chat-dropdown-menu-${chatId}`);
     if (menu) menu.classList.remove('show');
-    
+
     if (displayElement.style.display !== 'none') {
         // Skift til redigeringstilstand
         displayElement.style.display = 'none';
-        editForm.style.display = 'flex'; 
+        editForm.style.display = 'flex';
         if (menuContainer) menuContainer.style.display = 'none';
         inputField.focus();
     } else {
@@ -85,10 +78,33 @@ function toggleEditChatName(chatId) {
     }
 }
 
+// Funktion til at skifte mellem visning og redigering
+function toggleEdit(msgId) {
+    const textElement = document.getElementById(`text-${msgId}`)
+    const formElement = document.getElementById(`edit-form-${msgId}`)
+    const menuElement = document.querySelector(`#msg-${msgId} .menu-container`)
+
+    if (formElement.style.display === 'none') {
+        // VIS REDIGERING
+        textElement.style.display = 'none'
+        formElement.style.display = 'block'
+        if (menuElement) menuElement.style.display = 'none'
+
+        // Sæt fokus i feltet
+        const inputField = formElement.querySelector('input')
+        if (inputField) inputField.focus()
+    } else {
+        // ANNULLER REDIGERING
+        textElement.style.display = 'inline'
+        formElement.style.display = 'none'
+        if (menuElement) menuElement.style.display = 'block'
+    }
+}
+
 //Patch request via fetch API
 async function handleChatNameEdit(form, event) {
     event.preventDefault(); // Forhindrer normal form submission
-    
+
     const chatId = form.id.replace('edit-chat-name-form-', '');
     const newName = form.querySelector('input[name="name"]').value.trim();
     const displayElement = document.getElementById(`chat-name-display-${chatId}`);
@@ -116,7 +132,7 @@ async function handleChatNameEdit(form, event) {
             toggleEditChatName(chatId);
         } else {
             alert('Fejl: Kunne ikke opdatere chatnavn.');
-            toggleEditChatName(chatId); 
+            toggleEditChatName(chatId);
         }
     } catch (error) {
         console.error('Netværksfejl ved PATCH:', error);

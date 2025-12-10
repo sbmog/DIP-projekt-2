@@ -14,7 +14,7 @@ function authorizeAdmin(request, response) {
 
 //EndPoint
 
-// OPRET BRUGER: Vis formular (Kun Admin)
+// OPRET BRUGER: Vis opret siden (Kun Admin)
 router.get('/create', (request, response) => {
     if (!authorizeAdmin(request, response)) return
 
@@ -53,29 +53,14 @@ router.get('/', async (request, response) => {
     response.render('userList', { users: safeUsers, title: 'Brugeradministration' })
 })
 
-router.delete('/:id',async(request, response)=>{
-    if (!authorizeAdmin(request, response)) return
-
-    const id = parseInt(request.params.id)
-    const succes = await deleteUser(id)
-
-    if (succes) {
-        request.session.save(()=>{
-            response.status(204).send()
-        })
-    }else{
-        response.status(404).send('Brugeren blev ikke fundet')
-    }
-})
-
 router.get('/:id', async (request, response) => {
     const id = parseInt(request.params.id)
     const users = await getUsers()
 
-    //Find den specifikke user
+    //Find den specifikke bruger
     const user = users.find(user => user.id === id)
 
-    //Hvis user ikke findes
+    //Hvis bruger ikke findes
     if (!user) {
         return response.status(404).json({ error: "User ikke fundet" })
     }
