@@ -3,11 +3,11 @@ import { createMessage, updateMessage, deleteMessage, getMessageById, getMessage
 
 import { getChats } from '../data/chatData.js'
 
-// VIGTIGT: mergeParams: true gør, at vi kan få adgang til ':id' parameteren
+// VIGTIGT: 'mergeParams: true' gør, at vi kan få adgang til ':id' parameteren
 // fra den router, der monterer denne (i dette tilfælde routes/chats.js)
 const router = express.Router({ mergeParams: true })
 
-
+// Hent alle chats for en specifik bruger
 router.get('/my', async (request, response) => {
     if (!request.session.isLoggedIn) {
         return response.redirect('/')
@@ -51,7 +51,7 @@ router.post('/', async (request, response) => {
     }
 });
 
-// PATCH /:messageId (Opdater besked) - PATCH /chats/:chatId/messages/:messageId
+// Opdater en specifik besked
 router.patch('/:messageId', async (request, response) => {
     if (!await authorizeMessageAccess(request, response)) {
         return
@@ -76,7 +76,7 @@ router.patch('/:messageId', async (request, response) => {
     }
 });
 
-// DELETE /:messageId (Slet besked) - DELETE /chats/:chatId/messages/:messageId
+// Slet en specifik besked
 router.delete('/:messageId', async (request, response) => {
     if (!await authorizeMessageAccess(request, response)) {
         return
