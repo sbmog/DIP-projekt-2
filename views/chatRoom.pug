@@ -10,6 +10,7 @@ body#chatpage
       a.back-btn(href="/chats") &larr; Tilbage
       div.chat-name-wrapper
         h1.chat-name-display(id=`chat-name-display-${chat.id}`) #{chat.name}
+        
         // Slet/ret chat knap
         if userLvl === 3 || (userLvl >= 2 && chat.user === currentUser)
           form.edit-chat-name-form(id=`edit-chat-name-form-${chat.id}` style="display:none;" onsubmit="return handleChatNameEdit(this, event)")        
@@ -17,7 +18,6 @@ body#chatpage
             div.edit-buttons
               button.save-btn(type="submit") Gem
               button.cancel-btn-small(type="button" onclick=`toggleEditChatName('${chat.id}')`) Fortryd
-        //a.delete-chat-btn(href="#", data-chat-id=`${chat.id}`) Slet chat
 
       if userLvl === 3 || (userLvl >= 2 && chat.user === currentUser)
         div.menu-container(id=`chat-menu-container-${chat.id}`)
@@ -28,7 +28,7 @@ body#chatpage
               button.delete-msg-btn(type="submit") Slet chat
 
     div.messages
-      // TJEK BESKEDER START
+      // Tjek beskeder fra start
       if chat.messages && chat.messages.length > 0
         ul
           each msg in chat.messages
@@ -36,10 +36,10 @@ body#chatpage
               div.message-content
                 strong.user-name #{msg.userName || 'Bruger'}:
                 
-                // VISNING: Den normale tekst (Synlig som standard)
+                // Visning af den normale tekst
                 span.message-text(id=`text-${msg.id}`) #{msg.messageContent || msg.content}
                 
-                // REDIGERING: Skjult formular til at rette (Skjult som standard)
+                // Redigering - Skjult som standard
                 if msg.userId == currentUser
                   form.edit-form(id=`edit-form-${msg.id}` action=`/chats/${chat.id}/messages/${msg.id}?_method=PATCH` method="POST" style="display:none;")
                     input.edit-input(type="text" name="content" value=(msg.messageContent || msg.content) required autocomplete="off")
@@ -47,12 +47,12 @@ body#chatpage
                       button.save-btn(type="submit") Gem
                       button.cancel-btn-small(type="button" onclick=`toggleEdit('${msg.id}')`) Fortryd
 
-              // MENU (Kun for ejeren)
+              // Menu men kun for ejeren
               if msg.userId == currentUser
                 div.menu-container
                   span.dots &#8942;
                   div.dropdown-menu
-                    // Slet knap (Med bekræftelse)
+                    // Slet knap for beskederne (Med bekræftelse)
                     form(action=`/chats/${chat.id}/messages/${msg.id}?_method=DELETE` method="POST" onsubmit="return confirm('Er du sikker på, at du vil slette denne besked?');")
                       button.delete-msg-btn(type="submit") Slet
                     

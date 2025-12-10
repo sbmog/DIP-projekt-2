@@ -75,5 +75,12 @@
     "oprettelsesDato": "2025-12-10T08:14:53.203Z",
     "user": 3,
     "chat": 3
+  },
+  {
+    "id": 12,
+    "messageContent": "Fedt",
+    "oprettelsesDato": "2025-12-10T09:26:22.020Z",
+    "user": 2,
+    "chat": 1
   }
 ]
