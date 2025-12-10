@@ -1,3 +1,6 @@
+/* Oprettelse af bruger - tilhøre createUser.pug */
+
+/* --- Side layout --- */
 body#createUserPage {
   display: flex;
   flex-direction: column;
@@ -13,19 +16,23 @@ body#createUserPage h1 {
   text-align: center;
 }
 
+/* --- Formular boksen --- */
 body#createUserPage form {
   background-color: white;
+  width: 100%;
+  max-width: 500px; 
+  margin: 0 auto; 
   padding: 40px;
+  
+  /* Udseende */
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.05);
   display: flex;
   flex-direction: column;
-    box-sizing: border-box;
-  width: 100%;
-  max-width: 500px; 
-  margin: 0 auto; 
+  box-sizing: border-box;
 }
 
+/* --- Labels & input felter --- */
 body#createUserPage label {
   margin-bottom: 8px;
   font-weight: 600;
@@ -33,9 +40,8 @@ body#createUserPage label {
   font-size: 14px;
 }
 
-body#createUserPage input[type="text"], 
-body#createUserPage input[type="password"],
-body#createUserPage select {
+/* HER ER ÆNDRINGEN: Bruger nu klassen .form-input */
+.form-input {
   padding: 12px 15px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -47,14 +53,15 @@ body#createUserPage select {
   box-sizing: border-box;
 }
 
-body#createUserPage input[type="text"]:focus,
-body#createUserPage input[type="password"]:focus,
-body#createUserPage select:focus {
+.form-input:focus {
   border-color: #007bff;
 }
 
-body#createUserPage button[type="submit"] {
-  background-color: #28a745; /* GRØN */
+/* --- Knapper (opret & annulering) --- */
+
+/* Opret knappen - HER ER ÆNDRINGEN: Bruger nu klassen .create-btn */
+.create-btn {
+  background-color: #28a745;
   color: white;
   border: none;
   padding: 12px;
@@ -65,14 +72,16 @@ body#createUserPage button[type="submit"] {
   transition: background-color 0.2s, transform 0.1s;
 }
 
-body#createUserPage button[type="submit"]:hover {
+.create-btn:hover {
   background-color: #218838;
 }
 
+/* Anullerings knappen */
 .cancel-btn {
   display: block;
   text-align: center;
-  background-color: #dc3545; /* RØD */
+  margin-top: 10px;
+  background-color: #dc3545;
   color: white;
   border: none;
   padding: 12px;
@@ -82,7 +91,6 @@ body#createUserPage button[type="submit"]:hover {
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
   text-decoration: none;
-  margin-top: 10px;
   box-sizing: border-box;
 }
 
