@@ -1,6 +1,9 @@
+/* --- Generel sideopsætning (Body) --- */
 body {
+  /* Skrifttype og baggrund */
   font-family: Arial, sans-serif;
   background-color: #f2f2f2;
+  /* Layout */
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -9,7 +12,9 @@ body {
   min-height: 80vh;
 }
 
+/* --- Log ud knappen ---*/
 .logoutbtn{
+  /* Udseende og farver */
   background-color: #dc3545;
   color: white;
   padding: 12px 25px;
@@ -22,16 +27,19 @@ body {
   display: inline-block;
 }
 
+/* Hover effekt på Log ud knap*/
 .logoutbtn:hover {
   background-color: #c82333;
   transform: translateY(-2px);
 }
 
+/* Hover effekt på Slet knap */
 .delete-chat-btn:hover {
   background-color: #dc3545;
   color: white;
 }
 
+/* Udseende for Slet knap*/
 .delete-chat-btn {
   color: #ee495a;
   border: 1px solid #dc3545;
