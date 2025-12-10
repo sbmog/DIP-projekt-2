@@ -11,7 +11,7 @@ export async function getUsers() {
     } catch (error) {
         // Opretter en initial liste, hvis filen ikke findes
         if (error.code === 'ENOENT') {
-             // Opret testbrugere for niveauer 1, 2 og 3
+            // Opret testbrugere for niveauer 1, 2 og 3
             const initialUsers = [
                 new User(1, 'level1_user', 'pass1', 1),
                 new User(2, 'level2_user', 'pass2', 2),
@@ -86,10 +86,30 @@ export async function deleteUser(id) {
     //Liste uden bruger der skal slettes
     const updatedUsers = users.filter(u => u.id !== userID)
 
-    if(updatedUsers.length===initialLenght)
+    if (updatedUsers.length === initialLenght)
         return false
 
     //Gem den nye liste(uden slettet) som default
     await saveUsers(updatedUsers)
     return true
+}
+
+export async function resetAllUserStatuses() {
+    const users = await getUsers()
+    let needsSaving = false
+
+    users.forEach(u => {
+        if (u.isOnline) {
+            u.isOnline = false
+            needsSaving = true
+        }
+    })
+
+    if (needsSaving) {
+        await saveUsers(users)
+        console.log("Alle brugeres online status er nulstillet ved server start.")
+        return true
+    }
+    console.log("Ingen online statusser skulle nulstilles");
+    return false
 }
