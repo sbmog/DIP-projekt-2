@@ -14,7 +14,7 @@ function authorizeAdmin(request, response) {
 
 //EndPoint
 
-// OPRET BRUGER: Vis formular (Kun Admin)
+// OPRET BRUGER: Vis opret siden (Kun Admin)
 router.get('/create', (request, response) => {
     if (!authorizeAdmin(request, response)) return
 
@@ -57,10 +57,10 @@ router.get('/:id', async (request, response) => {
     const id = parseInt(request.params.id)
     const users = await getUsers()
 
-    //Find den specifikke user
+    //Find den specifikke bruger
     const user = users.find(user => user.id === id)
 
-    //Hvis user ikke findes
+    //Hvis bruger ikke findes
     if (!user) {
         return response.status(404).json({ error: "User ikke fundet" })
     }

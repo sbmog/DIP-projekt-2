@@ -1,24 +1,21 @@
 import express from 'express'
-// Importer funktionen til at hente data
 import { getChats, createChat, deleteChat} from '../data/chatData.js'
 import { getMessagesByChat } from '../data/messageData.js'
 import { getUsers } from '../data/userData.js'
 import messagesRouter from './messages.js'
 
-
-
 const router = express.Router()
 
+//NESTED ROUTING
+//Her sender vi requests videre til messages.js
 router.use('/:id/messages', messagesRouter)
 
-
-// JSON API endpoint til at hente beskeder, der er nyere end en given ID
+//ENDPOINT (POLLING)
+// Henter beskeder, der er nyere end en given ID
 router.get('/:id/messages/new', async (request, response) => {
     const chatId = parseInt(request.params.id);
-    // Hent lastId fra URL'en (f.eks. ?lastId=10)
     const lastMessageId = parseInt(request.query.lastId) || 0 
     
-    // Simpel adgangstjek
     if (!request.session.isLoggedIn) {
         return response.status(401).json({ error: "Uautoriseret" })
     }
@@ -27,10 +24,9 @@ router.get('/:id/messages/new', async (request, response) => {
         const allMessages = await getMessagesByChat(chatId);
         const allUsers = await getUsers(); // Antager denne er importeret
 
-        // Filtrer beskeder: Kun dem med ID større end lastMessageId
+        // Filtrer beskeder: Kun dem med ID større end lastMessageId, og derfor nyere
         const newMessages = allMessages.filter(msg => msg.id > lastMessageId)
 
-        // Berig beskeder med brugernavnet
         const messagesWithUsers = newMessages.map(msg => {
             const user = allUsers.find(u => u.id === msg.user)
             return {
@@ -43,7 +39,7 @@ router.get('/:id/messages/new', async (request, response) => {
             };
         });
 
-        // Returner de nye data som JSON
+        // Returner de nye data som JSON til browseren, ikke som HTML
         response.json({ messages: messagesWithUsers })
     } catch (error) {
         console.error('Fejl ved hentning af nye beskeder:', error)
@@ -51,7 +47,7 @@ router.get('/:id/messages/new', async (request, response) => {
     }
 });
 
-// OVERSIGT: Vis listen af chats
+// Viser listen med alle chats
 router.get('/', async (request, response) => {
     const chats = await getChats()
     const userLevel = request.session.userLvl
@@ -59,7 +55,7 @@ router.get('/', async (request, response) => {
     response.render('chats', { chats: chats, userLvl: userLevel })
 })
 
-// OPRETTELSE
+// Viser siden til at oprette en chat
 router.get('/create', (request, response) => {
     if (!authorizeMinLevel(request, response, 2)) {
         return
@@ -67,6 +63,7 @@ router.get('/create', (request, response) => {
     response.render('createChat')
 })
 
+// Her oprettes chatten
 router.post('/create', async (request, response) => {
     if (!authorizeMinLevel(request, response, 2)) {
         return
@@ -85,7 +82,7 @@ router.post('/create', async (request, response) => {
     })
 })
 
-// SAMTALE: Vis en specifik chat
+// Viser en specifik chat
 router.get('/:id', async (request, response) => {
     const id = parseInt(request.params.id)
     const chats = await getChats()
@@ -95,9 +92,11 @@ router.get('/:id', async (request, response) => {
         return response.status(404).send("Chat ikke fundet")
     }
 
-    // Hent beskeder og brugere
+    // Her henter vi beskederne der hører til den chat
     const messages = await getMessagesByChat(id)
     const users = await getUsers()
+
+    // Mapper brugernavne på beskederne
     chat.messages = messages.map(msg => {
         const userObj = users.find(u => u.id == msg.user)
         return {
@@ -115,6 +114,7 @@ router.get('/:id', async (request, response) => {
     response.render('chatRoom', { chat: chat, currentUser: currentUserId, userLvl: userLevel })
 })
 
+// Her kan navnet på en chat opdateres
 router.patch('/:id', async (request, response) => {
     if (!await authorizeChatAccess(request, response)) {
         return
@@ -130,6 +130,7 @@ router.patch('/:id', async (request, response) => {
     })
 })
 
+// Her sletter vi chats
 router.delete('/:id', async (request, response) => {
     if (!await authorizeChatAccess(request, response)) {
         return
@@ -146,7 +147,7 @@ router.delete('/:id', async (request, response) => {
     }
 })
 
-// hjælpe funktion til at tjekke userLevel opfylder min.
+// Hjælpe funktioner
 function authorizeMinLevel(request, response, minLevel) {
     const userLevel = request.session.userLvl
 
@@ -158,7 +159,6 @@ function authorizeMinLevel(request, response, minLevel) {
     }
 }
 
-// Hjælpe function til tjekke ejerskab/admin
 async function authorizeChatAccess(request, response) {
     const id = parseInt(request.params.id)
 
