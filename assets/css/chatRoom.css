@@ -6,8 +6,8 @@ body#chatpage {
   margin: 0;
 }
 
-.h1{
-    color: white;
+.h1 {
+  color: white;
 }
 
 /* Selve "Chat boksen" */
@@ -16,7 +16,7 @@ body#chatpage {
   max-width: 600px;
   background-color: #fff;
   border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -33,20 +33,34 @@ body#chatpage {
   justify-content: space-between;
 }
 
+.chat-name-wrapper {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 0 10px;
+  justify-content: center;
+}
+
 .chat-header h1 {
   margin: 0;
   font-size: 1.2rem;
   font-weight: 600;
   color: white;
+  text-align: center;
 }
 
 .back-btn {
   color: white;
   text-decoration: none;
   font-size: 0.9rem;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
   padding: 5px 10px;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
 }
 
 .messages {
@@ -126,14 +140,16 @@ body#chatpage {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  position: relative; /* Nødvendig for at menuen hænger fast her */
+  position: relative;
+  /* Nødvendig for at menuen hænger fast her */
   padding-right: 5px;
 }
 
 /* Sikrer at selve beskeden tager pladsen og skubber menuen ud til siden */
 .message-content {
-  flex: 1; 
-  margin-right: 15px; /* Afstand hen til de 3 prikker */
+  flex: 1;
+  margin-right: 15px;
+  /* Afstand hen til de 3 prikker */
   word-break: break-word;
 }
 
@@ -142,22 +158,28 @@ body#chatpage {
 .menu-container {
   position: relative;
   cursor: pointer;
-  flex-shrink: 0;
-  height: 24px;
-  width: 20px;
-  align-self: flex-end;
-  margin-bottom: 5px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
 }
 
 .dots {
-  font-size: 18px;/* Størrelse på prikkerne */
-  color: #aaa;          
+  font-size: 18px;
+  /* Størrelse på prikkerne */
+  color: #aaa;
   line-height: 8px;
   font-weight: bold;
-  user-select: none;/* Gør at man ikke kan markere prikkerne som tekst */
+  user-select: none;
+  /* Gør at man ikke kan markere prikkerne som tekst */
   transition: color 0.2s;
   display: block;
   text-align: center;
+}
+
+.chat-header .dots {
+  color: white;
+  font-size: 24px;
 }
 
 /* Farv prikkerne mørkere når man holder musen over */
@@ -168,17 +190,19 @@ body#chatpage {
 
 /* Dropdown Menuen (Boksen) --- */
 .dropdown-menu {
-  display: none;             
-  position: absolute; /* Flyder ovenpå indholdet */
-  right: 0;               
-  top: 100%; /* Starter lige under prikkerne */
+  display: none;
+  position: absolute;
+  /* Flyder ovenpå indholdet */
+  right: 0;
+  top: 100%;
+  /* Starter lige under prikkerne */
   background-color: white;
-  min-width: 120px;      
+  min-width: 120px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  z-index: 100;             
-  padding: 5px 0;            
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  padding: 5px 0;
   overflow: hidden;
 }
 
@@ -189,7 +213,7 @@ body#chatpage {
 
 
 /* Knapperne INDE i menuen (Slet & Ret) --- */
-.delete-msg-btn, 
+.delete-msg-btn,
 .edit-msg-btn {
   display: block;
   width: 100%;
@@ -207,12 +231,13 @@ body#chatpage {
 .delete-msg-btn {
   color: #dc3545;
 }
+
 .edit-msg-btn {
   color: #007bff;
 }
 
 /* Hover effekt på menupunkterne */
-.delete-msg-btn:hover, 
+.delete-msg-btn:hover,
 .edit-msg-btn:hover {
   background-color: #f8f9fa;
 }
@@ -222,6 +247,17 @@ body#chatpage {
 .edit-form {
   margin-top: 5px;
   width: 100%;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.edit-form .edit-input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
 .edit-input {
@@ -231,6 +267,15 @@ body#chatpage {
   border: 1px solid #ccc;
   margin-bottom: 5px;
   box-sizing: border-box;
+}
+
+.edit-chat-name-form .edit-input {
+  flex-grow: 1;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid #007bff;
+  font-size: 1.2rem;
+  margin-right: 10px;
 }
 
 .edit-buttons {
@@ -258,5 +303,29 @@ body#chatpage {
   font-size: 12px;
 }
 
-.save-btn:hover { background-color: #218838; }
-.cancel-btn-small:hover { background-color: #5a6268; }
+.save-btn:hover {
+  background-color: #218838;
+}
+
+.cancel-btn-small:hover {
+  background-color: #5a6268;
+}
+
+/*Besked-dots retknapper*/
+.message-content .save-btn,
+.message-content .cancel-btn-small {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/*chat-dots knapper*/
+.chat-header .save-btn,
+.chat-header .cancel-btn-small {
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  line-height: normal;
+  margin: 0;
+}

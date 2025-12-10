@@ -8,10 +8,24 @@ body#chatpage
   div.chat-container
     div.chat-header
       a.back-btn(href="/chats") &larr; Tilbage
-      h1 #{chat.name}
-      // Slet chat knap
+      div.chat-name-wrapper
+        h1.chat-name-display(id=`chat-name-display-${chat.id}`) #{chat.name}
+        // Slet/ret chat knap
+        if userLvl === 3 || (userLvl >= 2 && chat.user === currentUser)
+          form.edit-chat-name-form(id=`edit-chat-name-form-${chat.id}` style="display:none;" onsubmit="return handleChatNameEdit(this, event)")        
+            input.edit-input(type="text" name="name" value=chat.name required autocomplete="off")
+            div.edit-buttons
+              button.save-btn(type="submit") Gem
+              button.cancel-btn-small(type="button" onclick=`toggleEditChatName('${chat.id}')`) Fortryd
+        //a.delete-chat-btn(href="#", data-chat-id=`${chat.id}`) Slet chat
+
       if userLvl === 3 || (userLvl >= 2 && chat.user === currentUser)
-        a.delete-chat-btn(href="#", data-chat-id=`${chat.id}`) Slet chat
+        div.menu-container(id=`chat-menu-container-${chat.id}`)
+          span.dots(onclick=`toggleChatMenu('${chat.id}')`) &#8942;
+          div.dropdown-menu(id=`chat-dropdown-menu-${chat.id}` style="right: 0;")
+            button.edit-msg-btn(type="button" onclick=`toggleEditChatName('${chat.id}')`) Ret chatnavn
+            form(action=`/chats/${chat.id}?_method=DELETE` method="POST" onsubmit="return confirm('Er du sikker på, at du vil slette hele chatten? Dette kan ikke fortrydes!');")
+              button.delete-msg-btn(type="submit") Slet chat
 
     div.messages
       // TJEK BESKEDER START

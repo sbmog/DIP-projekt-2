@@ -48,7 +48,7 @@ async function checkUserCredientials(username, password) {
 }
 
 function checkAccess(request, response, next) {
-    console.log("Forsøg på adgang til siden: " + request.url);
+    console.log("Tjekker session... Forsøg på adgang til siden: " + request.url);
     // forsøg på at se /chats siden UDEN at være logget ind
     if (request.url === '/chats' && !request.session.isLoggedIn) {
         response.redirect('/')
