@@ -28,3 +28,6 @@ Systemet består af en Node.js-baseret server, der håndterer chatrum, brugere o
 * `/views`: Dynamiske Pug-skabeloner.
 * `/assets`: Klientside JavaScript (DOM-styring og polling) samt CSS-styling.
 * `/data`: Logik til håndtering af JSON-filer og persistens.
+
+## Forfattere
+Maja Kragelund, Rune Hyldgaard Jensen og Sidse Borch Mogensen
