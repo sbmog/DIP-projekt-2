@@ -1,33 +1,33 @@
 # Full-Stack Chat Server & Client
 
-Dette projekt er udviklet som en del af 4. semester på Datamatikeruddannelsen (faget C# og .NET / Systemintegration). Projektet demonstrerer opbygningen af en komplet chat-server og tilhørende klient ved brug af moderne webteknologier og RESTful arkitektur.
+This project was developed as part of the 4th semester of the Computer Science program (specializing in C#, .NET, and System Integration). The project demonstrates the construction of a complete chat server and an accompanying client using modern web technologies and a RESTful architecture.
 
-## Projektbeskrivelse
-Systemet består af en Node.js-baseret server, der håndterer chatrum, brugere og beskeder. Klienten tilgår serverens data via et RESTful API og præsenterer en dynamisk brugerflade, hvor adgangen styres af et rettighedssystem i tre niveauer.
+## Project Description
+The system consists of a Node.js-based server that manages chat rooms, users, and messages. The client accesses the server's data via a RESTful API and presents a dynamic user interface where access is controlled by a three-tier permission system.
 
-### Hovedfunktioner
-* **RESTful API:** Komplette endpoints til CRUD-operationer på chats, beskeder og brugere.
-* **Rettighedsstyring (ACL):**
-    * **Niveau 1:** Læseadgang til chats.
-    * **Niveau 2:** Mulighed for at oprette, slette og rette egne chats.
-    * **Niveau 3 (Admin):** Fulde rettigheder til at administrere alle chats og se brugerlister.
-* **Data Persistens:** Arkivering af data på disk i JSON-format ved brug af `node:fs`, som indlæses automatisk ved serverstart.
-* **Dynamisk UI:** Kombination af server-side rendering med **Pug** og klientside **DOM manipulation** for en responsiv oplevelse.
-* **Polling:** Implementeret real-tids opdatering af chatlister og beskeder via polling-mekanismer.
+### Key Features
+* **RESTful API:** Comprehensive endpoints for CRUD operations on chats, messages, and users.
+* **Access Control Logic (ACL):**
+    * **Level 1:** Read-only access to chats.
+    * **Level 2:** Ability to create, delete, and edit the user's own chats.
+    * **Level 3 (Admin):** Full rights to manage all chats and view user lists.
+* **Data Persistence:** Archiving data on disk in JSON format using `node:fs`, which is automatically loaded upon server startup.
+* **Dynamic UI:** A combination of server-side rendering with **Pug** and client-side **DOM manipulation** for a responsive experience.
+* **Polling:** Implemented real-time updates of chat lists and messages via polling mechanisms.
 
-## Teknologier & Værktøjer
+## Technologies & Tools
 * **Backend:** Node.js, Express.js
 * **Frontend:** JavaScript (ES6+), Pug Templates, CSS3
-* **Session:** Express-session til autentificering
-* **Storage:** JSON-baseret fil-arkivering (fs)
-* **Værktøjer:** Visual Studio Code, Git/GitHub, Nodemon
+* **Session:** Express-session for authentication
+* **Storage:** JSON-based file archiving (fs)
+* **Tools:** Visual Studio Code, Git/GitHub, Nodemon
 
-## Struktur
-* `/routes`: Håndtering af API endpoints for chats, users og messages.
-* `/models`: Definition af datamodeller (Chat, Message, User).
-* `/views`: Dynamiske Pug-skabeloner.
-* `/assets`: Klientside JavaScript (DOM-styring og polling) samt CSS-styling.
-* `/data`: Logik til håndtering af JSON-filer og persistens.
+## Structure
+* `/routes`: Handling API endpoints for chats, users, and messages.
+* `/models`: Definition of data models (Chat, Message, User).
+* `/views`: Dynamic Pug templates.
+* `/assets`: Client-side JavaScript (DOM management and polling) and CSS styling.
+* `/data`: Logic for handling JSON files and persistence.
 
-## Forfattere
-Maja Kragelund, Rune Hyldgaard Jensen og Sidse Borch Mogensen
+## Authors
+Maja Kragelund, Rune Hyldgaard Jensen, and Sidse Borch Mogensen
